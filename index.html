@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joel Al Gohri Sayed | IT Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="aviation-bg"></div>
+
+    <div id="tech-modal" class="modal hidden" onclick="toggleNotes()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="toggleNotes()">&times; CLOSE</span>
+            <h3>/// SYSTEM LOGIC: VARIABLE LANDING ///</h3>
+            <div class="modal-body">
+                <p><strong>1. The "Brain" (Randomization Engine)</strong><br>
+                    Every 15 seconds, a JavaScript function randomly selects one of three flight scenarios: <span
+                        class="highlight">PERFECT</span>, <span class="highlight">HIGH</span>, or <span
+                        class="highlight">LOW</span>.</p>
+
+                <p><strong>2. Visual Synchronization (3 Layers)</strong><br>
+                    Once a scenario is active, three systems update in unison:</p>
+                <ul>
+                    <li><strong>Flight Path Physics:</strong> The plane's descent angle, flare, and nose-drop
+                        (derotation) are calculated mathematically.</li>
+                    <li><strong>PAPI Lights:</strong> The 4-light ground system changes colors based on the active
+                        class.</li>
+                    <li><strong>Flight Instruments (PFD):</strong> The Glideslope diamond moves physically on the scale.
+                    </li>
+                </ul>
+                <p><strong>3. Go-Around Logic (New)</strong><br>
+                    Clicking TO/GA interrupts the CSS animation engine. It captures the aircraft's realtime X/Y
+                    coordinates via the DOM, injects them into CSS Variables, and triggers a new "Climb Out" animation
+                    profile.</p>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-area">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M21,16V14L13,9V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z" />
+            </svg>
+        </div>
+        <h1>JOEL AL GOHRI SAYED</h1>
+        <p class="subtitle">Aviation Enthusiast // IT Programmer</p>
+        <nav>
+            <ul>
+                <li><a href="#hero">Departure</a></li>
+                <li><a href="#mission">Flight Plan</a></li>
+                <li><a href="#skills">Ratings</a></li>
+                <li><a href="#projects">Logbook</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <button id="pfd-toggle-btn" class="hud-btn" onclick="togglePFD()">PFD: ON</button>
+
+            <button id="tech-info-btn" class="hud-btn highlighted-btn" onclick="toggleNotes()">TECH INFO</button>
+
+            <button id="ga-btn" class="hud-btn ga-btn" onclick="triggerGoAround()">TO/GA</button>
+
+            <div class="hero-anim-box" id="sky-container">
+
+                <div class="control-tower">
+                    <div class="tower-beacon"></div>
+                    <div class="tower-cab">
+                        <div class="cab-window"></div>
+                    </div>
+                    <div class="tower-shaft"></div>
+                </div>
+
+                <div class="pfd-screen" id="pfd-display">
+                    <div class="pfd-attitude-layer" id="pfd-attitude">
+                        <div class="pfd-sky"></div>
+                        <div class="pfd-ground"></div>
+                        <div class="pfd-horizon-line"></div>
+                        <div class="pitch-lines">
+                            <div class="pitch-line p-10"><span>10</span></div>
+                            <div class="pitch-line p-20"><span>20</span></div>
+                            <div class="pitch-line m-10"><span>10</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flight-director">
+                        <div class="fd-v"></div>
+                        <div class="fd-h"></div>
+                    </div>
+
+                    <div class="aircraft-symbol">
+                        <div class="wing left"></div>
+                        <div class="wing right"></div>
+                        <div class="dot"></div>
+                    </div>
+
+                    <div class="bank-scale">
+                        <div class="bank-triangle"></div>
+                        <div class="bank-ticks"></div>
+                    </div>
+
+                    <div class="pfd-tape speed-tape">
+                        <div class="tape-container">
+                            <div class="tape-numbers" id="speed-tape-nums">
+                                180<br>170<br>160<br>150<br>140<br>130<br>120<br>110<br>100
+                            </div>
+                        </div>
+                        <div class="tape-marker left-marker"></div>
+                    </div>
+
+                    <div class="pfd-tape alt-tape">
+                        <div class="tape-container">
+                            <div class="tape-numbers" id="alt-tape-nums">
+                                500<br>400<br>300<br>200<br>100<br>80<br>60<br>40<br>20<br>10<br>00
+                            </div>
+                        </div>
+                        <div class="tape-marker right-marker"></div>
+                    </div>
+
+                    <div class="gs-scale">
+                        <div class="gs-dot top-dot"></div>
+                        <div class="gs-dot mid-dot"></div>
+                        <div class="gs-dot bot-dot"></div>
+                        <div class="gs-diamond" id="gs-diamond"></div>
+                    </div>
+
+                    <div class="pfd-fma">
+                        <span>SPD</span><span>LOC</span><span>G/S</span>
+                        <span id="fma-text"
+                            style="color: white; grid-column: span 3; text-align: center; margin-top: 2px;">LAND</span>
+                    </div>
+                </div>
+
+                <div class="ground-reference">
+                    <div class="runway-strip">
+                        <div class="marking threshold-keys"></div>
+                        <div class="marking tdz-3-bar"></div>
+                        <div class="marking aiming-point"></div>
+                        <div class="marking tdz-2-bar"></div>
+                        <div class="marking tdz-1-bar"></div>
+                        <div class="marking centerline"></div>
+
+                        <div class="papi-system" id="papi-lights">
+                            <div class="papi-unit u1"></div>
+                            <div class="papi-unit u2"></div>
+                            <div class="papi-unit u3"></div>
+                            <div class="papi-unit u4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Cleared for Landing</h2>
+            <p>I am a student at the NSCC IT Campus learning web and software development. Currently building my
+                portfolio and preparing for my career in technology.</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </section>
+
+        <section id="mission">
+            <h2>Flight Plan (Mission & Vision)</h2>
+            <p><strong>Mission:</strong> To develop practical programming skills in Java and Web Dev that I can apply in
+                real-world situations.</p>
+            <p><strong>Vision:</strong> To create streamlined, user-friendly experiences for future clients.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Ratings (Skills)</h2>
+            <div class="taxi-sign-bar">
+                <div class="sign sign-loc">HTML5</div>
+                <div class="sign sign-loc">CSS3</div>
+                <div class="sign sign-loc">JAVA</div>
+                <div class="sign sign-dir">JS &#8599;</div>
+                <div class="sign sign-dir">SQL DB &#8594;</div>
+                <div class="sign sign-dir">NETWORKING &#8593;</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p><strong>Email:</strong> w0514987@campus.nscc.ca</p>
+            <p><strong>Location:</strong> Halifax, Nova Scotia</p>
+            <a href="https://www.linkedin.com/in/joel-a-785a273a3" target="_blank" class="btn">
+                Connect on LinkedIn &rarr;
+            </a>
+        </section>
+
+        <section id="projects">
+            <h2>Pilot Logbook (Projects)</h2>
+            <p>Current active projects in the hangar:</p>
+            <ul>
+                <li>Development Portfolio (Website Development)</li>
+                <li>Java Application (Logic & Programming)</li>
+                <li>Networking Toolkit (Intro to Networking)</li>
+                <li>Virtual Machine Environments (OSYS)</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="threshold-bar"></div>
+        <div class="footer-content">
+            <div class="papi-container">
+                <div class="papi-light red"></div>
+                <div class="papi-light red"></div>
+                <div class="papi-light white"></div>
+                <div class="papi-light white"></div>
+            </div>
+            <div class="footer-text">
+                <p>RUNWAY 27R</p>
+                <p>&copy; 2026 Joel Al Gohri Sayed</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function togglePFD() {
+            const pfd = document.getElementById('pfd-display');
+            const btn = document.getElementById('pfd-toggle-btn');
+            if (pfd.style.display === 'none') {
+                pfd.style.display = 'block';
+                btn.textContent = 'PFD: ON';
+                btn.style.opacity = '1';
+            } else {
+                pfd.style.display = 'none';
+                btn.textContent = 'PFD: OFF';
+                btn.style.opacity = '0.7';
+            }
+        }
+
+        function toggleNotes() {
+            const modal = document.getElementById('tech-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+            } else {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+        }
+
+        // GO AROUND LOGIC
+        function triggerGoAround() {
+            const plane = document.querySelector('.plane-wrapper');
+            if (!plane) return; // No plane to go around
+
+            // 1. Capture current position (Physics Engine)
+            const computedStyle = window.getComputedStyle(plane);
+            const currentLeft = computedStyle.left;
+            const currentTop = computedStyle.top;
+
+            // 2. Freeze animation by setting explicit coordinates
+            plane.style.animation = 'none';
+            plane.style.left = currentLeft;
+            plane.style.top = currentTop;
+
+            // Trigger reflow
+            void plane.offsetWidth;
+
+            // 3. Inject Start Coordinates into CSS Variables for the new animation
+            plane.style.setProperty('--start-left', currentLeft);
+            plane.style.setProperty('--start-top', currentTop);
+
+            // 4. Apply Go-Around Class
+            // Remove old approach classes
+            plane.classList.remove('approach-perfect', 'approach-high', 'approach-low');
+            // Add new class
+            plane.classList.add('executing-ga');
+
+            // 5. Update PFD (System Logic)
+            const fma = document.getElementById('fma-text');
+            const speedTape = document.getElementById('speed-tape-nums');
+            const altTape = document.getElementById('alt-tape-nums');
+            const attitude = document.getElementById('pfd-attitude');
+
+            // Update FMA Text
+            fma.textContent = "TO/GA";
+            fma.style.color = "#FFD600"; // Caution Yellow for Alert
+
+            // Pitch Up (Climb)
+            attitude.classList.remove('attitude-land'); // remove standard landing anim if needed
+            attitude.style.animation = 'none';
+            void attitude.offsetWidth;
+            attitude.style.animation = 'pfd-toga-pitch 4s linear forwards';
+
+            // Altitude (Climb)
+            altTape.classList.remove('tape-perfect', 'tape-high', 'tape-low');
+            void altTape.offsetWidth;
+            altTape.classList.add('tape-toga');
+
+            // Speed (Power Up)
+            speedTape.classList.remove('tape-perfect', 'tape-high', 'tape-low');
+            void speedTape.offsetWidth;
+            speedTape.classList.add('tape-toga');
+        }
+
+        function initPFDState() {
+            if (window.innerWidth < 768) {
+                const pfd = document.getElementById('pfd-display');
+                const btn = document.getElementById('pfd-toggle-btn');
+                pfd.style.display = 'none';
+                btn.textContent = 'PFD: OFF';
+                btn.style.opacity = '0.7';
+            }
+        }
+        initPFDState();
+
+        function spawnPlane() {
+            // Reset systems for new approach
+            const fma = document.getElementById('fma-text');
+            fma.textContent = "LAND";
+            fma.style.color = "white";
+
+            const attitude = document.getElementById('pfd-attitude');
+            attitude.style.animation = 'pfd-attitude-pitch 12s linear infinite';
+
+            const container = document.getElementById('sky-container');
+
+            // Remove old planes just in case
+            const existingPlane = document.querySelector('.plane-wrapper');
+            if (existingPlane) existingPlane.remove();
+
+            const papiSystem = document.getElementById('papi-lights');
+            const gsDiamond = document.getElementById('gs-diamond');
+            const speedTape = document.getElementById('speed-tape-nums');
+            const altTape = document.getElementById('alt-tape-nums');
+
+            const scenarios = ['perfect', 'high', 'low'];
+            const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+
+            const planeWrapper = document.createElement('div');
+            planeWrapper.classList.add('plane-wrapper');
+            planeWrapper.classList.add('approach-' + scenario);
+
+            const isUnited = Math.random() > 0.5;
+            const planeImg = document.createElement('div');
+            planeImg.classList.add(isUnited ? 'united-plane' : 'ac-plane');
+
+            const smoke = document.createElement('div');
+            smoke.classList.add('touchdown-smoke');
+
+            const mainSmoke = document.createElement('div');
+            mainSmoke.classList.add('main-smoke');
+
+            const noseSmoke = document.createElement('div');
+            noseSmoke.classList.add('nose-smoke');
+
+            const noseLight = document.createElement('div');
+            noseLight.classList.add('nose-gear-light');
+
+            planeWrapper.appendChild(planeImg);
+            planeWrapper.appendChild(mainSmoke);
+            planeWrapper.appendChild(noseSmoke);
+            planeWrapper.appendChild(noseLight);
+
+            container.appendChild(planeWrapper);
+
+            // Update Systems
+            papiSystem.className = 'papi-system';
+            papiSystem.classList.add('papi-' + scenario);
+
+            gsDiamond.className = 'gs-diamond';
+            gsDiamond.classList.add('gs-' + scenario);
+
+            speedTape.classList.remove('tape-perfect', 'tape-high', 'tape-low', 'tape-toga');
+            altTape.classList.remove('tape-perfect', 'tape-high', 'tape-low', 'tape-toga');
+
+            void speedTape.offsetWidth;
+
+            speedTape.classList.add('tape-' + scenario);
+            altTape.classList.add('tape-' + scenario);
+
+            setTimeout(() => {
+                // Only remove if it hasn't gone around (class check)
+                if (planeWrapper.parentNode) {
+                    planeWrapper.remove();
+                }
+            }, 12000);
+        }
+
+        spawnPlane();
+        setInterval(spawnPlane, 15000);
+    </script>
+</body>
+
+</html>
