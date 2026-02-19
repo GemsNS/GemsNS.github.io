@@ -38,7 +38,7 @@
                 <p><strong>3. Go-Around Logic (New)</strong><br>
                     Clicking TO/GA interrupts the CSS animation engine. It captures the aircraft's realtime X/Y
                     coordinates via the DOM, injects them into CSS Variables, and triggers a new "Climb Out" animation
-                    profile.</p>
+                    profile with simulated spool-up physics and gear retraction.</p>
             </div>
         </div>
     </div>
@@ -66,9 +66,7 @@
     <main>
         <section id="hero">
             <button id="pfd-toggle-btn" class="hud-btn" onclick="togglePFD()">PFD: ON</button>
-
             <button id="tech-info-btn" class="hud-btn highlighted-btn" onclick="toggleNotes()">TECH INFO</button>
-
             <button id="ga-btn" class="hud-btn ga-btn" onclick="triggerGoAround()">TO/GA</button>
 
             <div class="hero-anim-box" id="sky-container">
@@ -252,6 +250,9 @@
         function triggerGoAround() {
             const plane = document.querySelector('.plane-wrapper');
             if (!plane) return; // No plane to go around
+            
+            // PREVENT SPAM: If the plane is already going around, ignore the click
+            if (plane.classList.contains('executing-ga')) return;
 
             // 1. Capture current position (Physics Engine)
             const computedStyle = window.getComputedStyle(plane);
@@ -271,9 +272,7 @@
             plane.style.setProperty('--start-top', currentTop);
 
             // 4. Apply Go-Around Class
-            // Remove old approach classes
             plane.classList.remove('approach-perfect', 'approach-high', 'approach-low');
-            // Add new class
             plane.classList.add('executing-ga');
 
             // 5. Update PFD (System Logic)
@@ -287,7 +286,7 @@
             fma.style.color = "#FFD600"; // Caution Yellow for Alert
 
             // Pitch Up (Climb)
-            attitude.classList.remove('attitude-land'); // remove standard landing anim if needed
+            attitude.classList.remove('attitude-land'); 
             attitude.style.animation = 'none';
             void attitude.offsetWidth;
             attitude.style.animation = 'pfd-toga-pitch 4s linear forwards';
@@ -381,8 +380,13 @@
 
             setTimeout(() => {
                 // Only remove if it hasn't gone around (class check)
-                if (planeWrapper.parentNode) {
+                if (planeWrapper.parentNode && !planeWrapper.classList.contains('executing-ga')) {
                     planeWrapper.remove();
+                } else if (planeWrapper.parentNode && planeWrapper.classList.contains('executing-ga')) {
+                     // Clean up ga planes later
+                    setTimeout(() => {
+                         if (planeWrapper.parentNode) planeWrapper.remove();
+                    }, 6000);
                 }
             }, 12000);
         }
