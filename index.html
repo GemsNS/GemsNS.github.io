@@ -7,393 +7,476 @@
     <title>Joel Al Gohri Sayed | IT Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Open+Sans:wght@400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Open+Sans:wght@400;600&family=Arimo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="aviation-bg"></div>
+    <div id="portfolio-view">
+        <div class="aviation-bg"></div>
 
-    <div id="tech-modal" class="modal hidden" onclick="toggleNotes()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="toggleNotes()">&times; CLOSE</span>
-            <h3>/// SYSTEM LOGIC: VARIABLE LANDING ///</h3>
-            <div class="modal-body">
-                <p><strong>1. The "Brain" (Randomization Engine)</strong><br>
-                    Every 15 seconds, a JavaScript function randomly selects one of three flight scenarios: <span
-                        class="highlight">PERFECT</span>, <span class="highlight">HIGH</span>, or <span
-                        class="highlight">LOW</span>.</p>
+        <div id="tech-modal" class="modal hidden" onclick="toggleNotes()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>SYSTEM LOGIC // AVIONICS SYNC</h3>
+                    <span class="close-modal" onclick="toggleNotes()">[ X ]</span>
+                </div>
+                <div class="modal-body">
+                    <p><span class="highlight">01. AUTOTHROTTLE (A/T) PID</span><br>
+                        A procedural PID controller constantly monitors airspeed against target speed. Drag naturally slows the plane, commanding the Autothrottle to spool N1 thrust to compensate.</p>
+                    <p><span class="highlight">02. TO/GA PARABOLIC ENGINE</span><br>
+                        Clicking TO/GA interrupts the GSAP landing timeline. It dynamically calculates the plane's downward momentum, forcing a realistic "sink" before smoothly pitching up into a positive climb trajectory.</p>
+                </div>
+            </div>
+        </div>
 
-                <p><strong>2. Visual Synchronization (3 Layers)</strong><br>
-                    Once a scenario is active, three systems update in unison:</p>
+        <header>
+            <div class="header-left">
+                <div class="logo-area">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21,16V14L13,9V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z" />
+                    </svg>
+                    <span class="logo-text">W0514987</span>
+                </div>
+                <div class="titles">
+                    <h1>JOEL AL GOHRI SAYED</h1>
+                    <p class="subtitle">Aviation Enthusiast // IT Programmer</p>
+                </div>
+            </div>
+            <nav>
                 <ul>
-                    <li><strong>Flight Path Physics:</strong> The plane's descent angle, flare, and nose-drop
-                        (derotation) are calculated mathematically.</li>
-                    <li><strong>PAPI Lights:</strong> The 4-light ground system changes colors based on the active
-                        class.</li>
-                    <li><strong>Flight Instruments (PFD):</strong> The Glideslope diamond moves physically on the scale.
-                    </li>
+                    <li><a href="#hero">DEP</a></li>
+                    <li><a href="#mission">FTE</a></li>
+                    <li><a href="#skills">RTG</a></li>
+                    <li><a href="#projects">LOG</a></li>
+                    <li><a href="#contact">COM</a></li>
+                    <li><a href="#" onclick="launchSimulator(); return false;" class="sim-link disabled-link">SYS.ILS_CAT_III [WIP]</a></li>
                 </ul>
-                <p><strong>3. Go-Around Logic (New)</strong><br>
-                    Clicking TO/GA interrupts the CSS animation engine. It captures the aircraft's realtime X/Y
-                    coordinates via the DOM, injects them into CSS Variables, and triggers a new "Climb Out" animation
-                    profile with simulated spool-up physics and gear retraction.</p>
+            </nav>
+        </header>
+
+        <main>
+            <section id="hero" class="tech-panel">
+                <div class="panel-header">
+                    <h2>SEC 01 // VISUAL APPROACH SIMULATION</h2>
+                    <div class="panel-controls">
+                        <button id="pfd-toggle-btn" class="hud-btn" onclick="togglePFD()">PFD [ON]</button>
+                        <button id="tech-info-btn" class="hud-btn highlighted-btn" onclick="toggleNotes()">SYS [INFO]</button>
+                        <button id="ga-btn" class="hud-btn ga-btn" onclick="triggerGoAround()">TO/GA</button>
+                    </div>
+                </div>
+
+                <div class="hero-anim-box" id="sky-container">
+                    <div class="control-tower"><div class="tower-beacon"></div><div class="tower-cab"><div class="cab-window"></div></div><div class="tower-shaft"></div></div>
+                    
+                    <div class="ground-reference">
+                        <div class="runway-strip">
+                            <div class="marking threshold-keys"></div><div class="marking tdz-3-bar"></div><div class="marking aiming-point"></div><div class="marking centerline"></div>
+                            <div class="papi-system" id="papi-lights"><div class="papi-unit u1"></div><div class="papi-unit u2"></div><div class="papi-unit u3"></div><div class="papi-unit u4"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="portfolio-avionics-slot"></div>
+
+                <div class="panel-footer-text" style="margin-top: 20px;">
+                    <p>STATUS: Cleared for Landing. Student at NSCC IT Campus learning web and software development. Building practical Java and Web Dev solutions.</p>
+                </div>
+            </section>
+
+            <div class="grid-sections">
+                <section id="mission" class="tech-panel">
+                    <div class="panel-header"><h2>SEC 02 // FLIGHT PLAN</h2></div>
+                    <p><span class="highlight">MISSION:</span> Develop practical programming skills in Java and Web Dev applicable in real-world situations.</p>
+                    <p><span class="highlight">VISION:</span> Create streamlined, user-friendly experiences for future clients.</p>
+                </section>
+
+                <section id="skills" class="tech-panel">
+                    <div class="panel-header"><h2>SEC 03 // RATINGS</h2></div>
+                    <div class="skills-grid">
+                        <div class="skill-item">HTML5</div>
+                        <div class="skill-item">CSS3</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">Java</div>
+                        <div class="skill-item">Linux</div>
+                        <div class="skill-item">SQL</div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="grid-sections">
+                <section id="projects" class="tech-panel">
+                    <div class="panel-header"><h2>SEC 04 // LOGBOOK</h2></div>
+                    <ul class="tech-list">
+                        <li>Development Portfolio (Website Development)</li>
+                        <li>Java Application (Logic & Programming)</li>
+                        <li>Networking Toolkit (Intro to Networking)</li>
+                        <li>Virtual Machine Environments (OSYS)</li>
+                    </ul>
+                </section>
+                
+                <section id="contact" class="tech-panel">
+                    <div class="panel-header"><h2>SEC 05 // COMM</h2></div>
+                    <p><span class="highlight">EMAIL:</span> w0514987@campus.nscc.ca</p>
+                    <p><span class="highlight">LOC:</span> Halifax, Nova Scotia</p>
+                    <a href="https://www.linkedin.com/in/joel-a-785a273a3" target="_blank" class="btn" style="margin-top: 15px;">LINKEDIN_CONNECT &rarr;</a>
+                </section>
+            </div>
+
+            <div class="tech-panel" style="margin-top: 20px;">
+                <details class="design-doc-tab">
+                    <summary class="panel-header" style="cursor: pointer; margin-bottom: 0;">
+                        <h2 style="display: inline-block;">SEC 06 // DESIGN REFLECTION</h2>
+                    </summary>
+                    <div style="margin-top: 15px;">
+                        <p>The initial wireframe provided a basic structure for the portfolio. I changed the layout significantly during the build phase. The original plan featured a simple text list for the skills section. I updated this into a CSS grid. A grid organizes the information better and makes it easier for users to read. I also incorporated an aviation theme with specific colors and fonts to reflect personal interests. I added custom animations to make the interface more engaging. These changes improve user experience and visual appeal. I learned that wireframes serve only as starting points. Building the site requires flexibility. You adapt the design as new technical possibilities emerge during development.</p>
+                    </div>
+                </details>
+            </div>
+        </main>
+        <footer>
+            <div class="threshold-bar"></div>
+            <div class="footer-text">SYS.END // &copy; 2026 JOEL AL GOHRI SAYED // RWY 27R</div>
+        </footer>
+    </div>
+
+    <div id="avionics-master-container" class="instrument-panel">
+        <div class="panel-scaler">
+            <div class="screen boeing-pfd">
+                <div class="boeing-tape-container" id="spd-tape-clip"><div class="boeing-tape-strip" id="b-spd-strip"></div></div>
+                <div class="boeing-tape-readout-box spd-box" id="b-spd-readout">140</div>
+                <div class="boeing-attitude-indicator">
+                    <div class="boeing-horizon-cylinder" id="b-horizon">
+                        <svg class="pitch-ladder-svg" viewBox="0 0 140 600">
+                            <line x1="30" y1="220" x2="110" y2="220" stroke="white" stroke-width="2"/>
+                            <text x="15" y="225" fill="white" font-size="12" font-family="Arimo" font-weight="bold">20</text>
+                            <text x="115" y="225" fill="white" font-size="12" font-family="Arimo" font-weight="bold">20</text>
+                            <line x1="40" y1="260" x2="100" y2="260" stroke="white" stroke-width="2"/>
+                            <text x="25" y="265" fill="white" font-size="12" font-family="Arimo" font-weight="bold">10</text>
+                            <text x="105" y="265" fill="white" font-size="12" font-family="Arimo" font-weight="bold">10</text>
+                            <line x1="0" y1="300" x2="140" y2="300" stroke="white" stroke-width="3"/>
+                            <line x1="40" y1="340" x2="100" y2="340" stroke="white" stroke-width="2" stroke-dasharray="5,5"/>
+                            <text x="25" y="345" fill="white" font-size="12" font-family="Arimo" font-weight="bold">10</text>
+                            <text x="105" y="345" fill="white" font-size="12" font-family="Arimo" font-weight="bold">10</text>
+                        </svg>
+                    </div>
+                    <div class="flight-director-bars" id="fd-bars"><div class="fd-h-bar" id="b-fd-pitch"></div><div class="fd-v-bar" id="b-fd-roll"></div></div>
+                    <div class="boeing-aircraft-symbol"><div class="ac-wing left"></div><div class="ac-center"></div><div class="ac-wing right"></div></div>
+                    <div class="ils-scale ils-v"><div class="ils-dot top"></div><div class="ils-dot bot"></div><div class="ils-diamond" id="b-gs-dev"></div></div>
+                    <div class="ils-scale ils-h"><div class="ils-dot left"></div><div class="ils-dot right"></div><div class="ils-diamond" id="b-loc-dev"></div></div>
+                </div>
+                <div class="boeing-tape-container" id="alt-tape-clip"><div class="boeing-tape-strip" id="b-alt-strip"></div></div>
+                <div class="boeing-tape-readout-box alt-box" id="b-alt-readout">00000</div>
+                <div class="fma-board"><div id="b-fma-spd">CMD</div><div id="b-fma-lat">LOC</div><div id="b-fma-vert">G/S</div></div>
+            </div>
+
+            <div class="screen nd">
+                <div class="nd-map-section">
+                    <div class="nd-header"><div>GS <span id="b-gs-readout" style="color:white">142</span></div><div>TAS <span id="b-tas-readout" style="color:white">140</span></div></div>
+                    <div class="nd-header" style="justify-content:center;"><div style="color:white">HDG <span style="color:var(--boeing-green)">270</span>&deg; M</div></div>
+                    <div class="nd-compass-container">
+                        <div class="nd-compass-ring" id="nd-compass-container-inner">
+                            <svg class="nd-route-svg" viewBox="-150 -150 300 300" style="position:absolute; top:0; left:0; width:100%; height:100%; overflow:visible;">
+                                <path d="M 0 0 L 0 -340" fill="none" stroke="#FF00FF" stroke-width="4" stroke-dasharray="10 6"/>
+                            </svg>
+                            <div class="nd-compass-rose" id="b-compass-rose"></div>
+                        </div>
+                        <div class="nd-ac-symbol"></div>
+                    </div>
+                </div>
+                <div class="nd-vsd-section">
+                    <div class="vsd-grid"></div>
+                    <svg class="vsd-svg" viewBox="0 0 360 120">
+                        <line x1="40" y1="40" x2="360" y2="120" stroke="#FF00FF" stroke-width="2" stroke-dasharray="8 4"/>
+                        <polygon id="b-vsd-ac" points="30,40 40,45 30,50" fill="#FFFFFF"/>
+                    </svg>
+                    <div class="vsd-alt-scale"><span>1000</span><span>500</span><span>0</span></div>
+                </div>
+            </div>
+
+            <div class="screen eis">
+                <div class="eis-top-row"><span>TAT 4c</span><span class="green">REF <span id="b-tgt-spd">140</span></span></div>
+                
+                <div class="eis-dials-wrapper">
+                    <div class="dial-block">
+                        <div class="dial-title">N<sub>1</sub></div>
+                        <div class="rev-indicators"><span id="b-rev-1" class="rev-text">REV</span><span id="b-rev-2" class="rev-text">REV</span></div>
+                        <div class="dials-row">
+                            <div class="dial-container">
+                                <svg class="dial-svg" viewBox="0 0 100 100">
+                                    <path d="M 15.36 70 A 40 40 0 1 1 84.64 70" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                                    <g id="b-n1-ndl-1"><circle cx="50" cy="50" r="4" fill="#FFFFFF"/><line x1="50" y1="50" x2="50" y2="10" stroke="#FFFFFF" stroke-width="3"/></g>
+                                </svg>
+                                <div class="dial-readout" id="b-n1-val-1">55.0</div>
+                            </div>
+                            <div class="dial-container">
+                                <svg class="dial-svg" viewBox="0 0 100 100">
+                                    <path d="M 15.36 70 A 40 40 0 1 1 84.64 70" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                                    <g id="b-n1-ndl-2"><circle cx="50" cy="50" r="4" fill="#FFFFFF"/><line x1="50" y1="50" x2="50" y2="10" stroke="#FFFFFF" stroke-width="3"/></g>
+                                </svg>
+                                <div class="dial-readout" id="b-n1-val-2">55.0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dial-block egt-block">
+                        <div class="dial-title">EGT</div>
+                        <div class="dials-row">
+                            <div class="dial-container egt-container">
+                                <svg class="dial-svg" viewBox="0 0 100 100">
+                                    <path d="M 15.36 70 A 40 40 0 1 1 84.64 70" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                                    <line x1="84.64" y1="70" x2="90" y2="75" stroke="#FF0000" stroke-width="3"/>
+                                    <g id="b-egt-ndl-1"><circle cx="50" cy="50" r="3" fill="#FFFFFF"/><line x1="50" y1="50" x2="50" y2="15" stroke="#FFFFFF" stroke-width="2"/></g>
+                                </svg>
+                                <div class="dial-readout egt-readout" id="b-egt-val-1">410</div>
+                            </div>
+                            <div class="dial-container egt-container">
+                                <svg class="dial-svg" viewBox="0 0 100 100">
+                                    <path d="M 15.36 70 A 40 40 0 1 1 84.64 70" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                                    <line x1="84.64" y1="70" x2="90" y2="75" stroke="#FF0000" stroke-width="3"/>
+                                    <g id="b-egt-ndl-2"><circle cx="50" cy="50" r="3" fill="#FFFFFF"/><line x1="50" y1="50" x2="50" y2="15" stroke="#FFFFFF" stroke-width="2"/></g>
+                                </svg>
+                                <div class="dial-readout egt-readout" id="b-egt-val-2">410</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="secondary-block">
+                    <div class="sec-val" id="b-ff-1">2.40</div><div class="sec-lbl">FF</div><div class="sec-val-l" id="b-ff-2">2.40</div>
+                    <div class="sec-val" id="b-gear-1">DOWN</div><div class="sec-lbl">GEAR</div><div class="sec-val-l" id="b-gear-2">DOWN</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <header>
-        <div class="logo-area">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M21,16V14L13,9V3.5A1.5,1.5 0 0,0 11.5,2A1.5,1.5 0 0,0 10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z" />
-            </svg>
-        </div>
-        <h1>JOEL AL GOHRI SAYED</h1>
-        <p class="subtitle">Aviation Enthusiast // IT Programmer</p>
-        <nav>
-            <ul>
-                <li><a href="#hero">Departure</a></li>
-                <li><a href="#mission">Flight Plan</a></li>
-                <li><a href="#skills">Ratings</a></li>
-                <li><a href="#projects">Logbook</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="hero">
-            <button id="pfd-toggle-btn" class="hud-btn" onclick="togglePFD()">PFD: ON</button>
-            <button id="tech-info-btn" class="hud-btn highlighted-btn" onclick="toggleNotes()">TECH INFO</button>
-            <button id="ga-btn" class="hud-btn ga-btn" onclick="triggerGoAround()">TO/GA</button>
-
-            <div class="hero-anim-box" id="sky-container">
-
-                <div class="control-tower">
-                    <div class="tower-beacon"></div>
-                    <div class="tower-cab">
-                        <div class="cab-window"></div>
-                    </div>
-                    <div class="tower-shaft"></div>
-                </div>
-
-                <div class="pfd-screen" id="pfd-display">
-                    <div class="pfd-attitude-layer" id="pfd-attitude">
-                        <div class="pfd-sky"></div>
-                        <div class="pfd-ground"></div>
-                        <div class="pfd-horizon-line"></div>
-                        <div class="pitch-lines">
-                            <div class="pitch-line p-10"><span>10</span></div>
-                            <div class="pitch-line p-20"><span>20</span></div>
-                            <div class="pitch-line m-10"><span>10</span></div>
-                        </div>
-                    </div>
-
-                    <div class="flight-director">
-                        <div class="fd-v"></div>
-                        <div class="fd-h"></div>
-                    </div>
-
-                    <div class="aircraft-symbol">
-                        <div class="wing left"></div>
-                        <div class="wing right"></div>
-                        <div class="dot"></div>
-                    </div>
-
-                    <div class="bank-scale">
-                        <div class="bank-triangle"></div>
-                        <div class="bank-ticks"></div>
-                    </div>
-
-                    <div class="pfd-tape speed-tape">
-                        <div class="tape-container">
-                            <div class="tape-numbers" id="speed-tape-nums">
-                                180<br>170<br>160<br>150<br>140<br>130<br>120<br>110<br>100
-                            </div>
-                        </div>
-                        <div class="tape-marker left-marker"></div>
-                    </div>
-
-                    <div class="pfd-tape alt-tape">
-                        <div class="tape-container">
-                            <div class="tape-numbers" id="alt-tape-nums">
-                                500<br>400<br>300<br>200<br>100<br>80<br>60<br>40<br>20<br>10<br>00
-                            </div>
-                        </div>
-                        <div class="tape-marker right-marker"></div>
-                    </div>
-
-                    <div class="gs-scale">
-                        <div class="gs-dot top-dot"></div>
-                        <div class="gs-dot mid-dot"></div>
-                        <div class="gs-dot bot-dot"></div>
-                        <div class="gs-diamond" id="gs-diamond"></div>
-                    </div>
-
-                    <div class="pfd-fma">
-                        <span>SPD</span><span>LOC</span><span>G/S</span>
-                        <span id="fma-text"
-                            style="color: white; grid-column: span 3; text-align: center; margin-top: 2px;">LAND</span>
-                    </div>
-                </div>
-
-                <div class="ground-reference">
-                    <div class="runway-strip">
-                        <div class="marking threshold-keys"></div>
-                        <div class="marking tdz-3-bar"></div>
-                        <div class="marking aiming-point"></div>
-                        <div class="marking tdz-2-bar"></div>
-                        <div class="marking tdz-1-bar"></div>
-                        <div class="marking centerline"></div>
-
-                        <div class="papi-system" id="papi-lights">
-                            <div class="papi-unit u1"></div>
-                            <div class="papi-unit u2"></div>
-                            <div class="papi-unit u3"></div>
-                            <div class="papi-unit u4"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Cleared for Landing</h2>
-            <p>I am a student at the NSCC IT Campus learning web and software development. Currently building my
-                portfolio and preparing for my career in technology.</p>
-            <a href="#contact" class="btn">Get in Touch</a>
-        </section>
-
-        <section id="mission">
-            <h2>Flight Plan (Mission & Vision)</h2>
-            <p><strong>Mission:</strong> To develop practical programming skills in Java and Web Dev that I can apply in
-                real-world situations.</p>
-            <p><strong>Vision:</strong> To create streamlined, user-friendly experiences for future clients.</p>
-        </section>
-
-        <section id="skills">
-            <h2>Technical Ratings (Skills)</h2>
-            <div class="taxi-sign-bar">
-                <div class="sign sign-loc">HTML5</div>
-                <div class="sign sign-loc">CSS3</div>
-                <div class="sign sign-loc">JAVA</div>
-                <div class="sign sign-dir">JS &#8599;</div>
-                <div class="sign sign-dir">SQL DB &#8594;</div>
-                <div class="sign sign-dir">NETWORKING &#8593;</div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p><strong>Email:</strong> w0514987@campus.nscc.ca</p>
-            <p><strong>Location:</strong> Halifax, Nova Scotia</p>
-            <a href="https://www.linkedin.com/in/joel-a-785a273a3" target="_blank" class="btn">
-                Connect on LinkedIn &rarr;
-            </a>
-        </section>
-
-        <section id="projects">
-            <h2>Pilot Logbook (Projects)</h2>
-            <p>Current active projects in the hangar:</p>
-            <ul>
-                <li>Development Portfolio (Website Development)</li>
-                <li>Java Application (Logic & Programming)</li>
-                <li>Networking Toolkit (Intro to Networking)</li>
-                <li>Virtual Machine Environments (OSYS)</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <div class="threshold-bar"></div>
-        <div class="footer-content">
-            <div class="papi-container">
-                <div class="papi-light red"></div>
-                <div class="papi-light red"></div>
-                <div class="papi-light white"></div>
-                <div class="papi-light white"></div>
-            </div>
-            <div class="footer-text">
-                <p>RUNWAY 27R</p>
-                <p>&copy; 2026 Joel Al Gohri Sayed</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        function togglePFD() {
-            const pfd = document.getElementById('pfd-display');
-            const btn = document.getElementById('pfd-toggle-btn');
-            if (pfd.style.display === 'none') {
-                pfd.style.display = 'block';
-                btn.textContent = 'PFD: ON';
-                btn.style.opacity = '1';
-            } else {
-                pfd.style.display = 'none';
-                btn.textContent = 'PFD: OFF';
-                btn.style.opacity = '0.7';
-            }
+        document.getElementById('portfolio-avionics-slot').appendChild(document.getElementById('avionics-master-container'));
+        
+        function togglePFD() { 
+            const pfd = document.getElementById('portfolio-avionics-slot'); 
+            const btn = document.getElementById('pfd-toggle-btn'); 
+            if (pfd.style.display === 'none') { 
+                pfd.style.display = 'flex'; btn.textContent = 'PFD [ON]'; btn.style.opacity = '1'; 
+            } else { 
+                pfd.style.display = 'none'; btn.textContent = 'PFD [OFF]'; btn.style.opacity = '0.5'; 
+            } 
+        }
+        
+        function toggleNotes() { 
+            const modal = document.getElementById('tech-modal'); 
+            modal.classList.toggle('hidden'); 
+            modal.style.display = modal.classList.contains('hidden') ? 'none' : 'flex'; 
         }
 
-        function toggleNotes() {
-            const modal = document.getElementById('tech-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                modal.style.display = 'flex';
-            } else {
-                modal.classList.add('hidden');
-                modal.style.display = 'none';
-            }
+        function launchSimulator() {
+            alert("SYS.ILS_CAT_III is currently offline for maintenance [WIP]. Please refer to 2D visual approach.");
+        }
+        
+        const bSpdStrip = document.getElementById('b-spd-strip');
+        const bAltStrip = document.getElementById('b-alt-strip');
+        bSpdStrip.innerHTML = ''; bAltStrip.innerHTML = '';
+        
+        const os = document.createElement('div'); os.className = 'barber-pole overspeed'; bSpdStrip.appendChild(os);
+        const us = document.createElement('div'); us.className = 'barber-pole underspeed'; bSpdStrip.appendChild(us);
+
+        for(let i = 400; i >= 0; i -= 10) { 
+            let t = document.createElement('div'); t.className = 'tick tick-spd'; t.style.height = '40px'; 
+            t.innerHTML = `<span>${i.toString().padStart(3, '0')}</span>`; bSpdStrip.appendChild(t); 
+        }
+        for(let i = 10000; i >= -100; i -= 100) { 
+            let t = document.createElement('div'); t.className = 'tick tick-alt'; t.style.height = '40px'; 
+            t.innerHTML = `<span>${i >= 0 ? i.toString().padStart(4, '0') : ''}</span>`; bAltStrip.appendChild(t); 
         }
 
-        // GO AROUND LOGIC
-        function triggerGoAround() {
-            const plane = document.querySelector('.plane-wrapper');
-            if (!plane) return; // No plane to go around
-            
-            // PREVENT SPAM: If the plane is already going around, ignore the click
-            if (plane.classList.contains('executing-ga')) return;
+        const bCompassRose = document.getElementById('b-compass-rose');
+        ['N', '03', '06', 'E', '12', '15', 'S', '21', '24', 'W', '30', '33'].forEach((hdg, index) => {
+            let t = document.createElement('div'); t.style.position = 'absolute'; t.style.top = '5px'; t.style.left = '50%';
+            t.style.transform = `translateX(-50%) rotate(${index * 30}deg) translateY(-130px)`; t.style.color = 'white'; t.style.fontWeight = 'bold'; t.innerText = hdg; bCompassRose.appendChild(t);
+        });
 
-            // 1. Capture current position (Physics Engine)
-            const computedStyle = window.getComputedStyle(plane);
-            const currentLeft = computedStyle.left;
-            const currentTop = computedStyle.top;
+        const els = {
+            n1_1: document.getElementById('b-n1-val-1'), n1_ndl_1: document.getElementById('b-n1-ndl-1'), rev_1: document.getElementById('b-rev-1'),
+            n1_2: document.getElementById('b-n1-val-2'), n1_ndl_2: document.getElementById('b-n1-ndl-2'), rev_2: document.getElementById('b-rev-2'),
+            egt_1: document.getElementById('b-egt-val-1'), egt_ndl_1: document.getElementById('b-egt-ndl-1'),
+            egt_2: document.getElementById('b-egt-val-2'), egt_ndl_2: document.getElementById('b-egt-ndl-2'),
+            ff_1: document.getElementById('b-ff-1'), ff_2: document.getElementById('b-ff-2'),
+            spd: document.getElementById('b-spd-readout'), alt: document.getElementById('b-alt-readout'), tgt_spd: document.getElementById('b-tgt-spd'),
+            horizon: document.getElementById('b-horizon'), gs: document.getElementById('b-gs-readout'), tas: document.getElementById('b-tas-readout'),
+            fma_lat: document.getElementById('b-fma-lat'), fma_vert: document.getElementById('b-fma-vert'), fma_spd: document.getElementById('b-fma-spd'),
+            vsd_ac: document.getElementById('b-vsd-ac'), 
+            gear1: document.getElementById('b-gear-1'), gear2: document.getElementById('b-gear-2'), gsDev: document.getElementById('b-gs-dev'), locDev: document.getElementById('b-loc-dev'),
+            fdPitch: document.getElementById('b-fd-pitch'), fdRoll: document.getElementById('b-fd-roll')
+        };
 
-            // 2. Freeze animation by setting explicit coordinates
-            plane.style.animation = 'none';
-            plane.style.left = currentLeft;
-            plane.style.top = currentTop;
-
-            // Trigger reflow
-            void plane.offsetWidth;
-
-            // 3. Inject Start Coordinates into CSS Variables for the new animation
-            plane.style.setProperty('--start-left', currentLeft);
-            plane.style.setProperty('--start-top', currentTop);
-
-            // 4. Apply Go-Around Class
-            plane.classList.remove('approach-perfect', 'approach-high', 'approach-low');
-            plane.classList.add('executing-ga');
-
-            // 5. Update PFD (System Logic)
-            const fma = document.getElementById('fma-text');
-            const speedTape = document.getElementById('speed-tape-nums');
-            const altTape = document.getElementById('alt-tape-nums');
-            const attitude = document.getElementById('pfd-attitude');
-
-            // Update FMA Text
-            fma.textContent = "TO/GA";
-            fma.style.color = "#FFD600"; // Caution Yellow for Alert
-
-            // Pitch Up (Climb)
-            attitude.classList.remove('attitude-land'); 
-            attitude.style.animation = 'none';
-            void attitude.offsetWidth;
-            attitude.style.animation = 'pfd-toga-pitch 4s linear forwards';
-
-            // Altitude (Climb)
-            altTape.classList.remove('tape-perfect', 'tape-high', 'tape-low');
-            void altTape.offsetWidth;
-            altTape.classList.add('tape-toga');
-
-            // Speed (Power Up)
-            speedTape.classList.remove('tape-perfect', 'tape-high', 'tape-low');
-            void speedTape.offsetWidth;
-            speedTape.classList.add('tape-toga');
-        }
-
-        function initPFDState() {
-            if (window.innerWidth < 768) {
-                const pfd = document.getElementById('pfd-display');
-                const btn = document.getElementById('pfd-toggle-btn');
-                pfd.style.display = 'none';
-                btn.textContent = 'PFD: OFF';
-                btn.style.opacity = '0.7';
-            }
-        }
-        initPFDState();
-
+        let portfolioState = { airspeed: 142, targetSpeed: 140, altitude: 500, pitch: 3, n1: 55, egt: 410, ff: 2.4, worldZ: 6000, gsDev: 0 };
+        let active2DPlane; 
+        
         function spawnPlane() {
-            // Reset systems for new approach
-            const fma = document.getElementById('fma-text');
-            fma.textContent = "LAND";
-            fma.style.color = "white";
-
-            const attitude = document.getElementById('pfd-attitude');
-            attitude.style.animation = 'pfd-attitude-pitch 12s linear infinite';
-
-            const container = document.getElementById('sky-container');
-
-            // Remove old planes just in case
-            const existingPlane = document.querySelector('.plane-wrapper');
-            if (existingPlane) existingPlane.remove();
-
-            const papiSystem = document.getElementById('papi-lights');
-            const gsDiamond = document.getElementById('gs-diamond');
-            const speedTape = document.getElementById('speed-tape-nums');
-            const altTape = document.getElementById('alt-tape-nums');
+            gsap.killTweensOf(portfolioState);
+            if(active2DPlane) active2DPlane.kill();
 
             const scenarios = ['perfect', 'high', 'low'];
             const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+            
+            portfolioState.altitude = (scenario === 'high') ? 600 : (scenario === 'low' ? 400 : 500);
+            portfolioState.pitch = 3; portfolioState.targetSpeed = 140; portfolioState.n1 = 55; portfolioState.worldZ = 6000;
+            if(scenario === 'high') portfolioState.gsDev = 40; else if (scenario === 'low') portfolioState.gsDev = -40; else portfolioState.gsDev = 0;
+
+            els.fma_vert.innerText = "G/S"; els.fma_lat.innerText = "LOC"; els.fma_spd.innerText = "SPD"; els.gear1.innerText = "DOWN"; els.gear2.innerText = "DOWN";
+            els.fma_vert.style.color = "#00FF00"; els.fma_lat.style.color = "#00FF00";
+
+            const container = document.getElementById('sky-container');
+            const existingPlane = document.querySelector('.plane-wrapper');
+            if (existingPlane) existingPlane.remove();
 
             const planeWrapper = document.createElement('div');
-            planeWrapper.classList.add('plane-wrapper');
-            planeWrapper.classList.add('approach-' + scenario);
-
-            const isUnited = Math.random() > 0.5;
+            planeWrapper.className = 'plane-wrapper';
+            
             const planeImg = document.createElement('div');
-            planeImg.classList.add(isUnited ? 'united-plane' : 'ac-plane');
-
-            const smoke = document.createElement('div');
-            smoke.classList.add('touchdown-smoke');
-
-            const mainSmoke = document.createElement('div');
-            mainSmoke.classList.add('main-smoke');
-
-            const noseSmoke = document.createElement('div');
-            noseSmoke.classList.add('nose-smoke');
-
-            const noseLight = document.createElement('div');
-            noseLight.classList.add('nose-gear-light');
-
-            planeWrapper.appendChild(planeImg);
-            planeWrapper.appendChild(mainSmoke);
-            planeWrapper.appendChild(noseSmoke);
-            planeWrapper.appendChild(noseLight);
-
+            planeImg.className = Math.random() > 0.5 ? 'united-plane' : 'ac-plane';
+            
+            const mainSmoke = document.createElement('div'); mainSmoke.className = 'main-smoke';
+            const noseSmoke = document.createElement('div'); noseSmoke.className = 'nose-smoke';
+            const noseLight = document.createElement('div'); noseLight.className = 'nose-gear-light';
+            
+            planeWrapper.appendChild(planeImg); planeWrapper.appendChild(mainSmoke); planeWrapper.appendChild(noseSmoke); planeWrapper.appendChild(noseLight);
             container.appendChild(planeWrapper);
 
-            // Update Systems
-            papiSystem.className = 'papi-system';
-            papiSystem.classList.add('papi-' + scenario);
+            const papiSystem = document.getElementById('papi-lights');
+            if(papiSystem) papiSystem.className = 'papi-system papi-' + scenario;
 
-            gsDiamond.className = 'gs-diamond';
-            gsDiamond.classList.add('gs-' + scenario);
+            let startY = (scenario === 'high') ? 10 : (scenario === 'low' ? 60 : 35);
+            let touchdownY = 190; 
+            
+            gsap.set(planeWrapper, { left: "-250px", top: startY + "px", rotation: 5 });
 
-            speedTape.classList.remove('tape-perfect', 'tape-high', 'tape-low', 'tape-toga');
-            altTape.classList.remove('tape-perfect', 'tape-high', 'tape-low', 'tape-toga');
-
-            void speedTape.offsetWidth;
-
-            speedTape.classList.add('tape-' + scenario);
-            altTape.classList.add('tape-' + scenario);
-
-            setTimeout(() => {
-                // Only remove if it hasn't gone around (class check)
-                if (planeWrapper.parentNode && !planeWrapper.classList.contains('executing-ga')) {
-                    planeWrapper.remove();
-                } else if (planeWrapper.parentNode && planeWrapper.classList.contains('executing-ga')) {
-                     // Clean up ga planes later
-                    setTimeout(() => {
-                         if (planeWrapper.parentNode) planeWrapper.remove();
-                    }, 6000);
+            active2DPlane = gsap.timeline({
+                onComplete: () => { setTimeout(() => { if (planeWrapper.parentNode) planeWrapper.remove(); }, 2000); }
+            });
+            
+            active2DPlane.to(planeWrapper, { left: "20%", top: touchdownY + "px", rotation: 0, duration: 6, ease: "none",
+                onComplete: () => { 
+                    els.fma_vert.innerText = "FLARE"; 
+                    gsap.fromTo([mainSmoke, noseSmoke], 
+                        { opacity: 1, scale: 0.5, y: 0, display: "block" }, 
+                        { opacity: 0, scale: 4, y: -20, x: -40, duration: 1.5, ease: "power2.out" }
+                    ); 
                 }
-            }, 12000);
+            })
+            .to(planeWrapper, { left: "120%", top: touchdownY + "px", rotation: 0, duration: 6, ease: "none", onStart: () => els.fma_lat.innerText = "ROLLOUT" });
+
+            let tl = gsap.timeline();
+            tl.to(portfolioState, { altitude: 50, worldZ: 1000, gsDev: 0, duration: 6, ease: "none" })
+              .to(portfolioState, { altitude: 0, worldZ: 0, pitch: 5, targetSpeed: 125, duration: 3, ease: "power1.out" })
+              .to(portfolioState, { pitch: 0, targetSpeed: 80, worldZ: -2000, duration: 3, ease: "power1.out" });
         }
 
-        spawnPlane();
-        setInterval(spawnPlane, 15000);
+        function triggerGoAround() {
+            const plane = document.querySelector('.plane-wrapper');
+            if (!plane || plane.classList.contains('executing-ga')) return;
+            
+            if(active2DPlane) active2DPlane.kill();
+            gsap.killTweensOf(portfolioState);
+            
+            gsap.set(['.main-smoke', '.nose-smoke', '.nose-gear-light'], {display: 'none'});
+            plane.classList.add('executing-ga');
+
+            let currentRot = gsap.getProperty(plane, "rotation") || 0;
+
+            const rect = plane.getBoundingClientRect();
+            const containerRect = document.getElementById('sky-container').getBoundingClientRect();
+            const currentLeft = rect.left - containerRect.left;
+            const currentTop = rect.top - containerRect.top;
+
+            gsap.set(plane, { left: currentLeft, top: currentTop, x: 0, y: 0, rotation: currentRot });
+            
+            let gaTl = gsap.timeline({
+                onComplete: () => { if (plane.parentNode) plane.remove(); }
+            });
+
+            gaTl.to(plane, { rotation: -15, duration: 1.5, ease: "sine.inOut" }, 0);
+            gaTl.to(plane, { top: currentTop + 15, duration: 0.8, ease: "sine.out" }, 0); 
+            gaTl.to(plane, { left: currentLeft + 1000, duration: 5, ease: "power1.in" }, 0); 
+            gaTl.to(plane, { top: currentTop - 400, duration: 4.2, ease: "power2.in" }, 0.8); 
+
+            els.fma_vert.innerText = "TO/GA"; els.fma_lat.innerText = "TO/GA"; els.fma_spd.innerText = "THR HLD";
+            els.gear1.innerText = "UP"; els.gear2.innerText = "UP";
+            portfolioState.gsDev = -50; 
+            gsap.to(portfolioState, { targetSpeed: 160, pitch: 15, altitude: 2000, n1: 96, duration: 6, ease: "power2.inOut" });
+        }
+        
+        spawnPlane(); setInterval(() => { if(!document.querySelector('.plane-wrapper.executing-ga')) spawnPlane(); }, 15000);
+
+        function masterRender() {
+            requestAnimationFrame(masterRender);
+            let state = portfolioState;
+
+            let spdError = state.targetSpeed - state.airspeed;
+            let targetN1 = 20; 
+            let revActive = false;
+
+            if (state.altitude > 1) {
+                targetN1 = 55 + (spdError * 3.0); 
+            } else {
+                if (state.targetSpeed < 100 && state.airspeed > 60) { targetN1 = 70; revActive = true; } 
+                else { targetN1 = 20; } 
+            }
+            
+            targetN1 = Math.max(0, Math.min(targetN1, 100));
+            state.n1 += (targetN1 - state.n1) * 0.03;
+
+            if(revActive) { els.rev_1.style.color = "#00FF00"; els.rev_2.style.color = "#00FF00"; } 
+            else { els.rev_1.style.color = "var(--boeing-bg)"; els.rev_2.style.color = "var(--boeing-bg)"; }
+
+            if (state.altitude <= 0.5) {
+                if (state.airspeed > state.targetSpeed) { state.airspeed -= (revActive ? 0.30 : 0.10); } 
+                else if (state.airspeed < state.targetSpeed) { state.airspeed += 0.02; }
+            } else {
+                let drag = (state.airspeed * state.airspeed) * 0.0028; 
+                let accel = (state.n1 - drag) * 0.015;
+                state.airspeed += accel;
+            }
+            
+            state.egt = 300 + (state.n1 * 4.5);
+            state.ff = (state.n1 / 100) * 4.2;
+
+            els.tgt_spd.innerText = state.targetSpeed;
+            els.spd.innerText = Math.round(state.airspeed).toString().padStart(3, '0');
+            els.alt.innerText = Math.round(state.altitude).toString().padStart(4, '0');
+            
+            bSpdStrip.style.transform = `translateY(calc(-${(400 - state.airspeed) * 4}px - 20px))`;
+            bAltStrip.style.transform = `translateY(calc(-${(10000 - state.altitude) * 0.4}px - 20px))`;
+            els.horizon.style.transform = `translateY(${state.pitch * 4}px)`;
+
+            els.gsDev.style.transform = `translateY(${state.gsDev || 0}px) rotate(45deg)`;
+            els.locDev.style.transform = `translateX(0px) rotate(45deg)`;
+            els.fdPitch.style.transform = `translateY(${(state.gsDev || 0) * 0.8}px)`;
+            els.fdRoll.style.transform = `translateX(0px)`;
+
+            els.n1_1.innerText = state.n1.toFixed(1); els.n1_2.innerText = state.n1.toFixed(1);
+            
+            let n1Rot = gsap.utils.mapRange(0, 100, -120, 120, Math.max(0, state.n1));
+            els.n1_ndl_1.style.transform = `rotate(${n1Rot}deg)`; els.n1_ndl_1.style.transformOrigin = `50px 50px`;
+            els.n1_ndl_2.style.transform = `rotate(${n1Rot}deg)`; els.n1_ndl_2.style.transformOrigin = `50px 50px`;
+            
+            els.egt_1.innerText = Math.round(state.egt); els.egt_2.innerText = Math.round(state.egt);
+            let egtRot = gsap.utils.mapRange(0, 1000, -120, 120, Math.max(0, state.egt));
+            els.egt_ndl_1.style.transform = `rotate(${egtRot}deg)`; els.egt_ndl_1.style.transformOrigin = `50px 50px`;
+            els.egt_ndl_2.style.transform = `rotate(${egtRot}deg)`; els.egt_ndl_2.style.transformOrigin = `50px 50px`;
+            
+            els.ff_1.innerText = state.ff.toFixed(2); els.ff_2.innerText = state.ff.toFixed(2);
+
+            els.gs.innerText = Math.round(state.airspeed + 8);
+            els.tas.innerText = Math.round(state.airspeed * 1.02);
+            
+            let vsdY = gsap.utils.mapRange(0, 1000, 120, 40, Math.max(0, state.altitude));
+            let vsdX = gsap.utils.mapRange(6000, -1500, 30, 250, state.worldZ);
+            els.vsd_ac.setAttribute('points', `${vsdX},${vsdY} ${vsdX+10},${vsdY+5} ${vsdX},${vsdY+10}`);
+        }
+        masterRender(); 
     </script>
 </body>
-
 </html>
