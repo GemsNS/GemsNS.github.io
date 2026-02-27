@@ -1,984 +1,281 @@
-/* --- Custom Properties --- */
+/* --- Custom Properties & Themes --- */
 :root {
     --body-font: 'Open Sans', sans-serif;
     --hud-font: 'Share Tech Mono', monospace;
     --taxi-yellow: #FFD600;
     --papi-red: #ff3d00;
     --papi-white: #f5f5f5;
-    --bg-color: #E3F2FD;
-    --text-color: #333333;
-    --panel-bg: #ffffff;
-    --accent: #d32f2f;
-    --border-style: 2px solid #546E7A;
-    --grid-color: rgba(0, 0, 0, 0.1);
-    --tablet-bg: #90A4AE;
-    --tablet-text: #000000;
-    --tablet-panel: #CFD8DC;
-    --tablet-accent: var(--taxi-yellow);
-    --desktop-bg: #0d1b2a;
-    --desktop-text: #E0E0E0;
-    --desktop-panel: #1b263b;
-    --desktop-accent: #00E676;
-    --desktop-yellow: var(--taxi-yellow);
+    
+    /* Technical Dark Manual Theme (Desktop Default) */
+    --tech-bg: #121417;
+    --tech-panel: #1e2124;
+    --tech-text: #d1d5db;
+    --tech-accent: #00FFFF;
+    --tech-border: #383b42;
+    --tech-warning: #FFB800;
+
+    --boeing-bg: #0A0A0A;
+    --sky-blue: #1C67BA;
+    --earth-brown: #663300;
 }
 
-* {
-    box-sizing: border-box;
+/* RESPONSIVE THEMES (Fully Restored) */
+@media (max-width: 600px) { :root { --tech-bg: #E3F2FD; --tech-text: #333333; --tech-panel: #ffffff; --tech-accent: #d32f2f; --tech-border: #546E7A; --tech-warning: #d32f2f; } }
+@media (min-width: 601px) and (max-width: 1024px) { :root { --tech-bg: #90A4AE; --tech-text: #000000; --tech-panel: #CFD8DC; --tech-accent: #FFD600; --tech-border: #546E7A; --tech-warning: #FFD600; } }
+
+* { box-sizing: border-box; }
+body { background-color: var(--tech-bg); color: var(--tech-text); font-family: var(--body-font); margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; transition: background-color 0.3s, color 0.3s;}
+
+/* --- LAYOUT --- */
+.aviation-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(rgba(128,128,128,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,0.1) 1px, transparent 1px); background-size: 40px 40px; }
+
+header { display: flex; justify-content: space-between; align-items: flex-end; background-color: #000; border-bottom: 2px solid var(--tech-accent); padding: 20px 40px; }
+.header-left { display: flex; align-items: center; gap: 20px; }
+.logo-area { display: flex; flex-direction: column; align-items: center; color: var(--tech-accent); }
+.logo-text { font-family: var(--hud-font); font-size: 12px; font-weight: bold; margin-top: 5px;}
+.titles h1 { color: #fff; font-family: var(--hud-font); margin: 0; letter-spacing: 2px; }
+.subtitle { font-family: var(--hud-font); font-size: 0.9rem; color: #888; margin-top: 5px; margin-bottom:0;}
+
+nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; }
+nav a { color: #fff; font-family: var(--hud-font); text-decoration: none; padding: 5px 15px; border: 1px solid transparent; transition: 0.2s;}
+nav a:hover { border-bottom: 1px solid var(--tech-accent); color: var(--tech-accent); }
+.disabled-link { color: #555 !important; border-color: #555 !important; cursor: not-allowed; }
+.disabled-link:hover { background: transparent !important; color: #555 !important; }
+
+main { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 20px;}
+.grid-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+@media (max-width: 800px) { 
+    .grid-sections { grid-template-columns: 1fr; } 
+    header { flex-direction: column; align-items: center; gap: 20px;} 
+    .header-left { flex-direction: column; text-align: center;} 
+    nav ul { justify-content: center; } 
 }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--body-font);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position: relative;
-}
-
-/* --- MODAL STYLES --- */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(2px);
-}
-
-.modal.hidden {
-    display: none !important;
-}
-
-.modal-content {
-    background-color: #1b263b;
-    border: 2px solid #00E676;
-    color: #E0E0E0;
-    font-family: var(--hud-font);
-    padding: 20px;
-    max-width: 600px;
-    width: 90%;
-    box-shadow: 0 0 20px rgba(0, 230, 118, 0.2);
-    position: relative;
-}
-
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    color: #00E676;
-    font-weight: bold;
-    border: 1px solid #00E676;
-    padding: 2px 5px;
-}
-
-.close-modal:hover {
-    background: #00E676;
-    color: black;
-}
-
-.modal h3 {
-    color: var(--taxi-yellow);
-    margin-top: 0;
-    border-bottom: 1px dashed #555;
-    padding-bottom: 10px;
-}
-
-.modal-body {
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.highlight {
-    color: #00E676;
-    font-weight: bold;
-}
-
-/* --- Map / Radar Background --- */
-.aviation-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
-
-h1,
-h2,
-h3 {
-    font-family: var(--hud-font);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-header {
-    background-color: var(--panel-bg);
-    padding: 20px;
-    text-align: center;
-    border-bottom: 4px solid var(--accent);
-}
-
-.subtitle {
-    font-family: var(--hud-font);
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: -10px;
-}
-
-/* Flexbox Navigation Rules */
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column; /* Stacks links vertically on mobile */
-    align-items: center;
-    gap: 10px;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
-    padding: 5px 15px;
-    font-family: var(--hud-font);
-    font-weight: bold;
-    display: block;
-    width: 100%;
-}
-
-section {
-    background-color: var(--panel-bg);
-    margin: 15px;
-    padding: 20px;
-    border-radius: 4px;
-    border: var(--border-style);
-    position: relative;
-    z-index: 1;
-}
-
-.hero-anim-box {
-    width: 100%;
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-    border: 1px solid #999;
-    background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 100%);
-    border-radius: 4px;
-}
-
-/* Buttons */
-.hud-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.7);
-    color: #00E676;
-    border: 1px solid #00E676;
-    font-family: var(--hud-font);
-    cursor: pointer;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    transition: all 0.3s;
-}
-
-.hud-btn:hover {
-    background: #00E676;
-    color: black;
-}
-
-.highlighted-btn {
-    right: 90px;
-}
-
-.ga-btn {
-    right: auto;
-    left: 10px;
-    background: rgba(200, 0, 0, 0.8);
-    color: white;
-    border-color: red;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.ga-btn:hover {
-    background: red;
-    color: white;
-    box-shadow: 0 0 10px red;
-}
-
-/* --- CONTROL TOWER --- */
-.control-tower {
-    position: absolute;
-    bottom: 80px;
-    left: 15%;
-    width: 40px;
-    height: 120px;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
-}
-
-.tower-beacon {
-    width: 6px;
-    height: 6px;
-    background-color: red;
-    border-radius: 50%;
-    box-shadow: 0 0 10px red;
-    animation: beacon-blink 1s infinite;
-    margin-bottom: 2px;
-}
-
-.tower-cab {
-    width: 30px;
-    height: 25px;
-    background: #2c3e50;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid #555;
-}
-
-.cab-window {
-    width: 26px;
-    height: 12px;
-    background: linear-gradient(135deg, #81d4fa, #29b6f6);
-    border-radius: 2px;
-    opacity: 0.8;
-}
-
-.tower-shaft {
-    width: 14px;
-    height: 100%;
-    background: linear-gradient(to right, #95a5a6, #bdc3c7, #95a5a6);
-    border-left: 1px solid #7f8c8d;
-    border-right: 1px solid #7f8c8d;
-}
-
-@keyframes beacon-blink {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; box-shadow: 0 0 15px red; }
-}
-
-/* --- AIRBUS STYLE PFD --- */
-.pfd-screen {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 160px;
-    height: 140px;
-    background: #000;
-    border: 2px solid #555;
-    border-radius: 6px;
-    overflow: hidden;
-    z-index: 50;
-    opacity: 0.98;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-}
-
-.pfd-attitude-layer {
-    position: absolute;
-    width: 100%;
-    height: 200%;
-    top: -50%;
-    left: 0;
-    animation: pfd-attitude-pitch 12s linear infinite;
-}
-
-.pfd-sky { height: 50%; background-color: #0099FF; }
-.pfd-ground { height: 50%; background-color: #964B00; }
-
-.pfd-horizon-line {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    height: 2px;
-    background: white;
-    z-index: 2;
-}
-
-.pitch-lines {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-}
-
-.pitch-line {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 1px;
-    background: white;
-    display: flex;
-    justify-content: space-between;
-}
-
-.pitch-line span {
-    color: white;
-    font-size: 8px;
-    font-family: sans-serif;
-    margin-top: -5px;
-}
-
-.p-10 { top: 35%; }
-.p-20 { top: 20%; }
-.m-10 { top: 65%; }
-.m-20 { top: 80%; }
-
-.flight-director {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 4;
-}
-
-.fd-v {
-    position: absolute;
-    left: 50%;
-    top: 20%;
-    height: 60%;
-    width: 2px;
-    background: #00E676;
-    transform: translateX(-50%);
-}
-
-.fd-h {
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    width: 60%;
-    height: 2px;
-    background: #00E676;
-    transform: translateY(-50%);
-}
-
-.aircraft-symbol {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 20px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.wing {
-    width: 20px;
-    height: 6px;
-    background: transparent;
-    border: 2px solid black;
-    border-top: 2px solid black;
-    position: absolute;
-    top: 5px;
-}
-
-.wing.left {
-    left: 0;
-    border-right: none;
-    border-bottom: 2px solid #FFD600;
-    border-left: 2px solid #FFD600;
-    background: #FFD600;
-    border: 1px solid black;
-    border-right: none;
-}
-
-.wing.right {
-    right: 0;
-    background: #FFD600;
-    border: 1px solid black;
-    border-left: none;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    background: #FFD600;
-    border: 1px solid black;
-    border-radius: 50%;
-    z-index: 11;
-}
-
-.bank-scale {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-}
-
-.bank-triangle {
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 8px solid #FFD600;
-}
-
-.bank-ticks {
-    margin-top: -20px;
-    width: 60px;
-    height: 60px;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    opacity: 0.5;
-}
-
-/* Tapes */
-.pfd-tape {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 28px;
-    background: rgba(40, 40, 40, 0.8);
-    color: white;
-    font-family: var(--hud-font);
-    font-size: 10px;
-    overflow: hidden;
-    z-index: 20;
-}
-
-.speed-tape { left: 0; border-right: 1px solid gray; text-align: right; padding-right: 2px; }
-.alt-tape { right: 0; border-left: 1px solid gray; text-align: left; padding-left: 2px; }
-.tape-container { position: absolute; width: 100%; height: 100%; }
-.tape-numbers { width: 100%; line-height: 20px; position: absolute; left: 0; }
-
-.tape-marker {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    height: 0;
-    transform: translateY(-50%);
-    z-index: 21;
-}
-
-.left-marker {
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 8px solid #FFD600;
-    right: 0;
-}
-
-.right-marker {
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 8px solid #FFD600;
-    left: 0;
-}
-
-.pfd-fma {
-    position: absolute;
-    top: 0;
-    left: 30px;
-    right: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    font-size: 9px;
-    font-weight: bold;
-    color: #00E676;
-    text-align: center;
-    z-index: 20;
-}
-
-/* --- PFD GLIDESLOPE INDICATOR --- */
-.gs-scale {
-    position: absolute;
-    right: 28px;
-    top: 25%;
-    height: 50%;
-    width: 10px;
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.gs-dot { width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.6; }
-
-.gs-diamond {
-    position: absolute;
-    right: -2px;
-    width: 8px;
-    height: 8px;
-    background: #FF00FF;
-    transform: rotate(45deg);
-    top: 50%;
-    border: 1px solid white;
-    transition: top 3s ease-in-out;
-}
-
-.gs-diamond.gs-low { top: 10%; }
-.gs-diamond.gs-high { top: 90%; }
-.gs-diamond.gs-perfect { top: 50%; }
-
-/* --- RUNWAY & PAPI (Responsive %) --- */
-.ground-reference {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 120px;
-    background: #1a1a1a;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
-    overflow: hidden;
-    border-top: 2px solid #444;
-}
-
-.runway-strip {
-    position: relative;
-    width: 100%; 
-    height: 80px;
-    background-color: #333333;
-    background-image: linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.02) 50%), linear-gradient(transparent 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 4px 4px;
-    transform: scaleX(1.4) rotateX(50deg) translateY(20px); 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border-left: 2px solid #555;
-    border-right: 2px solid #555;
-}
-
-.marking {
-    position: absolute;
-    background-color: #e0e0e0;
-    opacity: 0.9;
-}
-
-.marking::before, .marking::after { content: ''; position: absolute; background-color: #e0e0e0; }
-
-.threshold-keys { left: 5%; top: 5px; bottom: 5px; width: 60px; background: repeating-linear-gradient(to bottom, #e0e0e0 0px, #e0e0e0 4px, transparent 4px, transparent 8px); }
-.centerline { left: 5%; right: 0; top: 50%; height: 4px; transform: translateY(-50%); background: repeating-linear-gradient(to right, #e0e0e0 0px, #e0e0e0 30px, transparent 30px, transparent 60px); z-index: 5; }
-
-.tdz-3-bar { left: 20%; top: 0; height: 100%; width: 20px; background: transparent; }
-.tdz-3-bar::before, .tdz-3-bar::after { width: 6px; height: 25%; box-shadow: 8px 0 0 #e0e0e0, 16px 0 0 #e0e0e0; }
-.tdz-3-bar::before { top: 5px; } .tdz-3-bar::after { bottom: 5px; }
-
-.aiming-point { left: 35%; top: 0; height: 100%; width: 40px; background: transparent; }
-.aiming-point::before, .aiming-point::after { width: 100%; height: 25%; }
-.aiming-point::before { top: 5px; } .aiming-point::after { bottom: 5px; }
-
-.tdz-2-bar { left: 50%; top: 0; height: 100%; width: 20px; background: transparent; }
-.tdz-2-bar::before, .tdz-2-bar::after { width: 6px; height: 25%; box-shadow: 8px 0 0 #e0e0e0; }
-.tdz-2-bar::before { top: 5px; } .tdz-2-bar::after { bottom: 5px; }
-
-.tdz-1-bar { left: 65%; top: 0; height: 100%; width: 10px; background: transparent; }
-.tdz-1-bar::before, .tdz-1-bar::after { width: 6px; height: 25%; }
-.tdz-1-bar::before { top: 5px; } .tdz-1-bar::after { bottom: 5px; }
-
-/* PAPI SYSTEM */
-.papi-system {
-    position: absolute;
-    left: 35%;
-    top: -20px;
-    display: flex;
-    gap: 4px;
-}
-
-.papi-unit {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    box-shadow: 0 0 5px currentColor;
-    background-color: #555;
-    transition: background-color 0.5s, box-shadow 0.5s;
-}
-
-.papi-perfect .u1, .papi-perfect .u2 { background-color: #fff; box-shadow: 0 0 8px #fff; }
-.papi-perfect .u3, .papi-perfect .u4 { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
-.papi-high .u1, .papi-high .u2, .papi-high .u3 { background-color: #fff; box-shadow: 0 0 8px #fff; }
-.papi-high .u4 { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
-.papi-low .u1 { background-color: #fff; box-shadow: 0 0 8px #fff; }
-.papi-low .u2, .papi-low .u3, .papi-low .u4 { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
-
-/* --- PLANE ANIMATIONS --- */
-.plane-wrapper {
-    position: absolute;
-    width: 220px;
-    height: 100px;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.united-plane,
-.ac-plane {
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    clip-path: inset(0 0 0 0); /* Default fully visible */
-}
-
+.tech-panel { background-color: var(--tech-panel); border: 2px solid var(--tech-border); padding: 20px; position: relative; border-left: 10px solid var(--taxi-yellow);}
+.panel-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--tech-border); margin-bottom: 15px; padding-bottom: 10px; gap: 10px;}
+h2 { font-family: var(--hud-font); color: var(--tech-accent); font-size: 1.2rem; margin: 0;}
+.highlight { color: var(--tech-accent); font-weight: bold; font-family: var(--hud-font);}
+.tech-list { padding-left: 20px; line-height: 1.8; font-weight: bold;}
+
+button, .btn { display: inline-block; background-color: transparent; color: var(--tech-text); font-family: var(--hud-font); font-size: 1rem; padding: 8px 16px; border: 1px solid var(--tech-border); cursor: pointer; text-transform: uppercase; text-decoration: none; transition: 0.2s;}
+button:hover, .btn:hover { border-color: var(--tech-accent); color: var(--tech-accent); }
+.ga-btn { border-color: red; color: red; } .ga-btn:hover { background: red; color: #fff; box-shadow: 0 0 10px red;}
+
+/* 2D HERO ANIMATION */
+.hero-anim-box { width: 100%; height: 300px; position: relative; overflow: hidden; background: linear-gradient(to bottom, #000000 0%, #111827 100%); border: 1px solid #000; }
+.control-tower { position: absolute; bottom: 80px; left: 15%; width: 40px; height: 120px; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5)); }
+.tower-beacon { width: 6px; height: 6px; background-color: red; border-radius: 50%; box-shadow: 0 0 10px red; animation: beacon-blink 1s infinite; margin-bottom: 2px; }
+.tower-cab { width: 30px; height: 25px; background: #2c3e50; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #555; }
+.cab-window { width: 26px; height: 12px; background: linear-gradient(135deg, #81d4fa, #29b6f6); opacity: 0.6; }
+.tower-shaft { width: 14px; height: 100%; background: linear-gradient(to right, #4b5563, #6b7280, #4b5563); border-left: 1px solid #374151; border-right: 1px solid #374151; }
+@keyframes beacon-blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; box-shadow: 0 0 15px red; } }
+
+.ground-reference { position: absolute; bottom: 0; width: 100%; height: 80px; background: #111; perspective: 1000px; border-top: 2px solid #000; }
+.runway-strip { width: 100%; height: 80px; background: #222; transform: scaleX(1.4) rotateX(50deg) translateY(20px); position: relative; border-left: 2px solid #555; border-right: 2px solid #555; background-image: linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.02) 50%), linear-gradient(transparent 50%, rgba(0, 0, 0, 0.2) 50%); background-size: 4px 4px; }
+.marking { position: absolute; background-color: #aaa; opacity: 0.8; }
+.marking::before, .marking::after { content: ''; position: absolute; background-color: #aaa; }
+.threshold-keys { left: 5%; top: 5px; bottom: 5px; width: 60px; background: repeating-linear-gradient(to bottom, #aaa 0px, #aaa 4px, transparent 4px, transparent 8px); }
+.centerline { left: 5%; right: 0; top: 50%; height: 4px; transform: translateY(-50%); background: repeating-linear-gradient(to right, #aaa 0px, #aaa 30px, transparent 30px, transparent 60px); }
+.tdz-3-bar { left: 20%; top: 0; height: 100%; width: 20px; background: transparent; } .tdz-3-bar::before, .tdz-3-bar::after { content:''; position:absolute; width: 6px; height: 25%; box-shadow: 8px 0 0 #aaa, 16px 0 0 #aaa; background: #aaa;} .tdz-3-bar::before { top: 5px; } .tdz-3-bar::after { bottom: 5px; }
+.aiming-point { left: 35%; top: 0; height: 100%; width: 40px; background: transparent; } .aiming-point::before, .aiming-point::after { content:''; position:absolute; width: 100%; height: 25%; background: #aaa;} .aiming-point::before { top: 5px; } .aiming-point::after { bottom: 5px; }
+.tdz-2-bar { left: 50%; top: 0; height: 100%; width: 20px; background: transparent; } .tdz-2-bar::before, .tdz-2-bar::after { content:''; position:absolute; width: 6px; height: 25%; box-shadow: 8px 0 0 #aaa; background: #aaa; } .tdz-2-bar::before { top: 5px; } .tdz-2-bar::after { bottom: 5px; }
+.tdz-1-bar { left: 65%; top: 0; height: 100%; width: 10px; background: transparent; } .tdz-1-bar::before, .tdz-1-bar::after { content:''; position:absolute; width: 6px; height: 25%; background: #aaa; } .tdz-1-bar::before { top: 5px; } .tdz-1-bar::after { bottom: 5px; }
+
+/* 2D PAPI SYSTEM */
+.papi-system { position: absolute; left: 35%; top: -20px; display: flex; gap: 4px; z-index: 10;}
+.papi-unit { width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 5px currentColor; background-color: #555; transition: 0.5s; }
+.papi-perfect .u1, .papi-perfect .u2 { background-color: #fff; box-shadow: 0 0 8px #fff; } .papi-perfect .u3, .papi-perfect .u4 { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
+.papi-high .u1, .papi-high .u2, .papi-high .u3 { background-color: #fff; box-shadow: 0 0 8px #fff; } .papi-high .u4 { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
+.papi-low .u1 { background-color: #fff; box-shadow: 0 0 8px #fff; } .papi-low .u2, .papi-low .u3, .papi-low .u4 { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
+
+/* 2D PLANES (.PNG Extension applied) */
+.plane-wrapper { position: absolute; width: 220px; height: 100px; z-index: 10; pointer-events: none; transform-origin: bottom center; transform: scale(0.85);}
+.united-plane, .ac-plane { width: 100%; height: 100%; background-size: contain; background-position: center; background-repeat: no-repeat; }
 .united-plane { background-image: url('united-plane.png'); }
 .ac-plane { background-image: url('plane.png'); }
 
-/* Smoke styles */
-.main-smoke, .nose-smoke {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(200, 200, 200, 0) 70%);
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(0.5);
-    filter: blur(5px);
-}
+.main-smoke, .nose-smoke { position: absolute; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(200, 200, 200, 0.5) 40%, rgba(150, 150, 150, 0) 70%); border-radius: 50%; display: none; filter: blur(3px); }
+.main-smoke { bottom: 5px; left: 40%; } .nose-smoke { bottom: 5px; left: 80%; }
+.nose-gear-light { display: block; position: absolute; left: 175px; top: 68px; width: 8px; height: 8px; background: white; border-radius: 50%; box-shadow: 0 0 12px white; z-index: 15; animation: blink 0.3s infinite alternate; }
 
-.main-smoke { bottom: 15px; left: 45%; }
-.nose-smoke { bottom: 15px; left: 80%; }
+/* Gear retract for TO/GA */
+.executing-ga .united-plane, .executing-ga .ac-plane { animation: gear-retract 6s linear forwards !important; }
+@keyframes gear-retract { 0% { clip-path: inset(0 0 0 0); } 30% { clip-path: inset(0 0 0 0); } 50% { clip-path: inset(0 0 15% 0); } 100% { clip-path: inset(0 0 15% 0); } }
 
-/* Approach Animations */
-.approach-perfect { animation: land-perfect 12s linear forwards; }
-.approach-perfect .united-plane, .approach-perfect .ac-plane { animation: flare-perfect 12s linear forwards; }
-.approach-perfect .main-smoke { animation: smoke-main-perfect 12s linear forwards; }
-.approach-perfect .nose-smoke { animation: smoke-nose-perfect 12s linear forwards; }
-
-.approach-high { animation: land-high 12s linear forwards; }
-.approach-high .united-plane, .approach-high .ac-plane { animation: flare-high 12s linear forwards; }
-.approach-high .main-smoke { animation: smoke-main-high 12s linear forwards; }
-.approach-high .nose-smoke { animation: smoke-nose-high 12s linear forwards; }
-
-.approach-low { animation: land-low 12s linear forwards; }
-.approach-low .united-plane, .approach-low .ac-plane { animation: flare-low 12s linear forwards; }
-.approach-low .main-smoke { animation: smoke-main-low 12s linear forwards; }
-.approach-low .nose-smoke { animation: smoke-nose-low 12s linear forwards; }
-
-/* 1. Perfect Approach (Targets the Aiming Point at 35%) */
-@keyframes land-perfect {
-    0% { left: -250px; top: 20px; }
-    45% { left: calc(35% - 100px); top: 135px; } 
-    100% { left: 120%; top: 135px; }
-}
-
-@keyframes flare-perfect {
-    0% { transform: rotate(10deg); }
-    35% { transform: rotate(0deg); }
-    45% { transform: rotate(-5deg); }
-    55% { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes smoke-main-perfect {
-    0%, 44% { opacity: 0; transform: scale(0.5); }
-    45% { opacity: 0.8; transform: scale(1.2) translateX(-10px); }
-    55% { opacity: 0; transform: scale(2) translateX(-40px); }
-    100% { opacity: 0; }
-}
-
-@keyframes smoke-nose-perfect {
-    0%, 54% { opacity: 0; transform: scale(0.5); }
-    55% { opacity: 0.8; transform: scale(1.2) translateX(-10px); }
-    65% { opacity: 0; transform: scale(2) translateX(-40px); }
-    100% { opacity: 0; }
-}
-
-/* 2. High Approach (Floats further down to TDZ 2 at 50%) */
-@keyframes land-high {
-    0% { left: -250px; top: 5px; }
-    50% { left: calc(50% - 100px); top: 135px; }
-    100% { left: 120%; top: 135px; }
-}
-
-@keyframes flare-high {
-    0% { transform: rotate(10deg); }
-    40% { transform: rotate(0deg); }
-    50% { transform: rotate(-5deg); }
-    60% { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes smoke-main-high {
-    0%, 49% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 0.8; transform: scale(1.2) translateX(-10px); }
-    60% { opacity: 0; transform: scale(2) translateX(-40px); }
-    100% { opacity: 0; }
-}
-
-@keyframes smoke-nose-high {
-    0%, 59% { opacity: 0; transform: scale(0.5); }
-    60% { opacity: 0.8; transform: scale(1.2) translateX(-10px); }
-    70% { opacity: 0; transform: scale(2) translateX(-40px); }
-    100% { opacity: 0; }
-}
-
-/* 3. Low Approach (Lands early at TDZ 3 at 20%) */
-@keyframes land-low {
-    0% { left: -250px; top: 40px; }
-    40% { left: calc(20% - 100px); top: 135px; }
-    100% { left: 120%; top: 135px; }
-}
-
-@keyframes flare-low {
-    0% { transform: rotate(10deg); }
-    30% { transform: rotate(0deg); }
-    40% { transform: rotate(-5deg); }
-    50% { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes smoke-main-low {
-    0%, 39% { opacity: 0; transform: scale(0.5); }
-    40% { opacity: 0.8; transform: scale(1.2) translateX(-10px); }
-    50% { opacity: 0; transform: scale(2) translateX(-40px); }
-    100% { opacity: 0; }
-}
-
-@keyframes smoke-nose-low {
-    0%, 49% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 0.8; transform: scale(1.2) translateX(-10px); }
-    60% { opacity: 0; transform: scale(2) translateX(-40px); }
-    100% { opacity: 0; }
-}
-
-/* 4. GO AROUND (NEW WITH GEAR RETRACTION) */
-.plane-wrapper.executing-ga {
-    animation: go-around-path 6s linear forwards !important;
-}
-
-.plane-wrapper.executing-ga .united-plane,
-.plane-wrapper.executing-ga .ac-plane {
-    /* Triggers pitch and gear retraction simultaneously */
-    animation: 
-        go-around-pitch 6s linear forwards,
-        gear-retract 6s linear forwards !important;
-}
-
-@keyframes go-around-path {
-    0% { left: var(--start-left); top: var(--start-top); }
-    15% { left: calc(var(--start-left) + 15%); top: calc(var(--start-top) + 5px); }
-    35% { left: calc(var(--start-left) + 35%); top: calc(var(--start-top) - 30px); }
-    100% { left: 150%; top: -300px; }
-}
-
-@keyframes go-around-pitch {
-    0% { transform: rotate(0deg); }
-    15% { transform: rotate(0deg); } 
-    35% { transform: rotate(-15deg); } 
-    100% { transform: rotate(-15deg); } 
-}
-
-/* Simulates gear folding up by clipping the bottom 15% of the image */
-@keyframes gear-retract {
-    0% { clip-path: inset(0 0 0 0); }
-    30% { clip-path: inset(0 0 0 0); } /* Wait for positive rate */
-    50% { clip-path: inset(0 0 15% 0); } /* Slice off the wheels */
-    100% { clip-path: inset(0 0 15% 0); }
-}
-
-@keyframes pfd-attitude-pitch {
-    0% { transform: translateY(5px); }
-    60% { transform: translateY(5px); }
-    75% { transform: translateY(18px); }
-    100% { transform: translateY(12px); }
-}
-
-@keyframes pfd-toga-pitch {
-    0% { transform: translateY(5px); }
-    100% { transform: translateY(40px); }
-}
-
-/* Tape Animations */
-.tape-numbers.tape-perfect { animation: speed-perfect 12s linear infinite; }
-.tape-numbers.tape-high { animation: speed-high 12s linear infinite; }
-.tape-numbers.tape-low { animation: speed-low 12s linear infinite; }
-.tape-numbers.tape-toga { animation: speed-toga 4s linear forwards; }
-.alt-tape .tape-numbers.tape-perfect { animation: alt-perfect 12s linear infinite; }
-.alt-tape .tape-numbers.tape-high { animation: alt-high 12s linear infinite; }
-.alt-tape .tape-numbers.tape-low { animation: alt-low 12s linear infinite; }
-.alt-tape .tape-numbers.tape-toga { animation: alt-toga 4s linear forwards; }
-
-@keyframes speed-perfect { 0% { transform: translateY(20px); } 45% { transform: translateY(-40px); } 100% { transform: translateY(-100px); } }
-@keyframes alt-perfect { 0% { transform: translateY(20px); } 45% { transform: translateY(-140px); } 100% { transform: translateY(-140px); } }
-@keyframes speed-high { 0% { transform: translateY(20px); } 50% { transform: translateY(-40px); } 100% { transform: translateY(-100px); } }
-@keyframes alt-high { 0% { transform: translateY(20px); } 50% { transform: translateY(-140px); } 100% { transform: translateY(-140px); } }
-@keyframes speed-low { 0% { transform: translateY(20px); } 40% { transform: translateY(-40px); } 100% { transform: translateY(-100px); } }
-@keyframes alt-low { 0% { transform: translateY(20px); } 40% { transform: translateY(-140px); } 100% { transform: translateY(-140px); } }
-
-/* TO/GA Tapes */
-@keyframes speed-toga { 0% { transform: translateY(-60px); } 100% { transform: translateY(40px); } }
-@keyframes alt-toga { 0% { transform: translateY(-140px); } 100% { transform: translateY(40px); } }
-
-/* Shared/Media Queries */
-.taxi-sign-bar {
-    display: flex;
-    flex-wrap: wrap;
+/* Skills Panel Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
     margin-top: 15px;
-    justify-content: center;
 }
 
-.sign {
+.skill-item {
+    background: #000;
+    color: var(--taxi-yellow);
+    padding: 15px;
+    text-align: center;
+    border: 1px solid var(--taxi-yellow);
     font-family: var(--hud-font);
     font-weight: bold;
-    padding: 10px 20px;
-    border: 3px solid;
-    text-transform: uppercase;
     font-size: 1.1rem;
-    letter-spacing: 1px;
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
-}
-
-.sign-loc { background-color: #000; color: var(--taxi-yellow); border-color: var(--taxi-yellow); }
-.sign-dir { background-color: var(--taxi-yellow); color: #000; border-color: #000; }
-
-button,
-.btn {
-    background-color: var(--accent);
-    color: white;
-    font-family: var(--hud-font);
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
     text-transform: uppercase;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
+    transition: 0.2s;
 }
 
-footer {
-    margin-top: auto;
-    background-color: var(--panel-bg);
-    font-family: var(--hud-font);
-    position: relative;
-    z-index: 1;
-    padding-bottom: 20px;
+.skill-item:hover {
+    background: var(--taxi-yellow);
+    color: #000;
+    box-shadow: 0 0 10px var(--taxi-yellow);
 }
 
-.threshold-bar {
+/* Modal */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; justify-content: center; align-items: center; }
+.modal.hidden { display: none !important; }
+.modal-content { background: var(--tech-panel); border: 1px solid var(--tech-accent); padding: 20px; color: white; max-width: 600px; font-family: var(--body-font); width:90%;}
+.modal-header { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--tech-border); padding-bottom: 10px; margin-bottom: 10px;}
+.close-modal { cursor: pointer; color: var(--tech-accent); font-family: var(--hud-font); font-weight: bold; }
+
+footer { background-color: #000; font-family: var(--hud-font); border-top: 1px solid #333; margin-top: auto;}
+.threshold-bar { width: 100%; height: 10px; background: repeating-linear-gradient(90deg, #fff 0px, #fff 20px, transparent 20px, transparent 40px); opacity: 0.3; }
+.footer-text { color: #555; font-size: 0.8rem; padding: 20px; text-align: center;}
+
+
+/* =========================================================
+   MASTER BOEING AVIONICS SYSTEM (FLUSH PANEL UI)
+========================================================= */
+.instrument-panel {
     width: 100%;
-    height: 40px;
-    margin-bottom: 15px;
-    background: repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 20px, transparent 20px, transparent 40px);
-    border-top: 2px solid #333;
-    border-bottom: 2px solid #333;
-}
-
-.footer-content {
+    background-color: #1e2024; /* Dark grey MIP metal */
     display: flex;
-    flex-direction: column; /* Mobile first: stacked */
     justify-content: center;
-    align-items: center;
-    gap: 15px;
-    padding: 0 20px;
+    border-top: 2px solid #333;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
 }
 
-.footer-text {
-    text-align: center;
+.panel-scaler { display: flex; gap: 20px; padding: 20px; transform-origin: top center; transition: transform 0.3s ease; }
+
+/* 2D Portfolio Docking - Responsive Scaling */
+#portfolio-avionics-slot { display: block; width: 100%; overflow: hidden; margin-top: 20px; border: 1px solid #000;}
+#portfolio-avionics-slot .instrument-panel { box-shadow: none; border-top: none; }
+#portfolio-avionics-slot .panel-scaler { transform: scale(0.85); margin-bottom: -50px; }
+
+@media screen and (max-width: 1200px) { 
+    #portfolio-avionics-slot .panel-scaler { transform: scale(0.70); margin-bottom: -120px; } 
+}
+@media screen and (max-width: 900px) { 
+    #portfolio-avionics-slot .panel-scaler { transform: scale(0.55); margin-bottom: -200px; } 
+}
+@media screen and (max-width: 600px) { 
+    #portfolio-avionics-slot .panel-scaler { flex-direction: column; transform: scale(0.85); margin-bottom: 0; align-items: center; } 
+    #portfolio-avionics-slot { height: auto; padding-bottom: 20px; }
 }
 
-.papi-container {
-    display: inline-flex;
-    gap: 8px;
-    background-color: #333;
-    padding: 8px;
-    border: 2px solid #555;
+/* 3D View Overlays */
+#sim-view { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 9999; display: none; opacity: 0; transition: opacity 0.5s; overflow-y: auto; overflow-x: hidden; }
+#webgl-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
+.sim-header { position: absolute; top: 0; left: 0; width: 100%; padding: 20px; display: flex; justify-content: space-between; z-index: 10000; background: linear-gradient(rgba(0,0,0,0.8), transparent); pointer-events: none;}
+.sim-title { font-family: var(--hud-font); color: var(--tech-accent); font-size: 1.2rem; font-weight: bold;}
+
+/* BOEING SCREEN INTERNALS */
+.screen { 
+    background-color: var(--boeing-bg); 
+    border: 15px solid #0a0b0d; 
+    border-radius: 2px; 
+    position: relative; overflow: hidden; width: 360px; height: 440px; font-family: 'Arimo', sans-serif; 
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.5);
 }
+.screen::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--glass-glare) 0%, transparent 40%, rgba(0,0,0,0.4) 100%); z-index: 100; pointer-events: none; }
 
-.papi-light { width: 20px; height: 20px; border-radius: 50%; border: 1px solid #000; }
-.papi-light.red { background-color: var(--papi-red); }
-.papi-light.white { background-color: var(--papi-white); }
+/* BOEING PFD & BARBER POLES */
+.boeing-pfd { display: flex; justify-content: space-between; align-items: center; }
+.boeing-attitude-indicator { position: absolute; top: 50%; left: 50%; width: 240px; height: 240px; transform: translate(-50%, -50%); border-radius: 10px; overflow: hidden; z-index: 1; }
+.boeing-horizon-cylinder { position: absolute; top: -100%; left: -50%; width: 200%; height: 300%; background: linear-gradient(to bottom, var(--sky-blue) 0%, var(--sky-blue) 50%, #ffffff 50%, var(--earth-brown) 50.5%, var(--earth-brown) 100%); }
+.pitch-ladder-svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 140px; height: 600px; overflow: visible; }
+.boeing-aircraft-symbol { position: absolute; top: 50%; left: 50%; width: 160px; height: 20px; transform: translate(-50%, -50%); z-index: 10; }
+.boeing-aircraft-symbol .ac-wing { position: absolute; top: 50%; width: 50px; height: 6px; background-color: #000; border: 2px solid var(--boeing-white); }
+.boeing-aircraft-symbol .ac-wing.left { left: 0; border-right: none; } .boeing-aircraft-symbol .ac-wing.right { right: 0; border-left: none; }
+.boeing-aircraft-symbol .ac-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border: 2px solid var(--boeing-white); background: #000; }
 
-/* --- Media Queries --- */
+.flight-director-bars { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; transform: translate(-50%, -50%); z-index: 5; }
+.fd-h-bar { position: absolute; top: 50%; left: 0; width: 100%; height: 4px; background: var(--boeing-magenta); }
+.fd-v-bar { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: var(--boeing-magenta); }
 
-/* Mobile scaling for plane size */
-@media screen and (max-width: 600px) {
-    .plane-wrapper {
-        transform: scale(0.65);
-        transform-origin: bottom center;
-    }
+.ils-scale { position: absolute; display: flex; justify-content: space-between; align-items: center; z-index: 20;}
+.ils-dot { width: 6px; height: 6px; background: transparent; border: 2px solid var(--boeing-white); border-radius: 50%; }
+.ils-diamond { position: absolute; width: 12px; height: 12px; border: 2px solid var(--boeing-magenta); transform: rotate(45deg); transition: 0.1s linear; }
+.ils-v { right: 5px; top: 25%; height: 50%; width: 16px; flex-direction: column; } .ils-v .ils-diamond { top: 50%; right: 2px; }
+.ils-h { bottom: 5px; left: 25%; width: 50%; height: 16px; } .ils-h .ils-diamond { left: 50%; bottom: 2px; }
+
+.fma-board { position: absolute; top: 5px; left: 40px; right: 40px; height: 25px; display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 2px solid white; text-align: center; color: var(--boeing-green); font-weight: bold; font-size: 1.2rem; z-index: 30;}
+
+.boeing-tape-container { width: 60px; height: 300px; background-color: rgba(60, 65, 70, 0.4); border: 2px solid #555; position: relative; overflow: hidden; z-index: 20; }
+.boeing-tape-strip { position: absolute; width: 100%; top: 50%; }
+.boeing-tape-readout-box { position: absolute; top: 50%; transform: translateY(-50%); background-color: #000; border: 2px solid var(--boeing-white); color: var(--boeing-white); font-size: 1.4rem; font-weight: 700; padding: 4px 0; width: 70px; text-align: center; z-index: 30;}
+.spd-box { left: 0; border-left: none; } .alt-box { right: 0; border-right: none; }
+.spd-box::after { content: ''; position: absolute; top: 50%; right: -8px; transform: translateY(-50%); border-left: 8px solid var(--boeing-white); border-top: 8px solid transparent; border-bottom: 8px solid transparent;}
+.alt-box::after { content: ''; position: absolute; top: 50%; left: -8px; transform: translateY(-50%); border-right: 8px solid var(--boeing-white); border-top: 8px solid transparent; border-bottom: 8px solid transparent;}
+
+/* Barber Poles & Minor Ticks */
+.barber-pole { position: absolute; right: 0; width: 10px; background: repeating-linear-gradient(-45deg, #FF0000, #FF0000 10px, #000000 10px, #000000 20px); z-index: 5; border-left: 2px solid var(--boeing-white);}
+.overspeed { top: 0; height: 240px; }
+.underspeed { bottom: 0; height: 440px; }
+.tick { position: absolute; display: flex; align-items: center; font-size: 14px; font-weight: bold; color: var(--boeing-white); width: 100%; }
+.tick-spd { justify-content: flex-end; padding-right: 12px; border-right: 3px solid var(--boeing-white); position: relative; }
+.tick-spd::after { content: ''; position: absolute; right: -3px; top: 50%; width: 6px; height: 2px; background: var(--boeing-white); z-index: 10;}
+.tick-alt { justify-content: flex-start; padding-left: 12px; border-left: 3px solid var(--boeing-white); position: relative;}
+.tick-alt::after { content: ''; position: absolute; left: -3px; top: 50%; width: 6px; height: 2px; background: var(--boeing-white); z-index: 10;}
+
+/* BOEING ND & VSD */
+.nd { display: flex; flex-direction: column; padding: 0 !important; }
+.nd-map-section { height: 65%; width: 100%; padding: 15px; position: relative; border-bottom: 2px solid var(--boeing-white); display: flex; flex-direction: column; align-items: center;}
+.nd-vsd-section { height: 35%; width: 100%; background: #050505; position: relative; overflow: hidden; }
+.vsd-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px; }
+.vsd-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; }
+.vsd-alt-scale { position: absolute; right: 5px; top: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; color: var(--boeing-cyan); font-size: 0.8rem; font-weight: bold; padding: 5px 0; }
+.nd-header { width: 100%; display: flex; justify-content: space-between; color: var(--boeing-green); font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; }
+.nd-compass-container { width: 280px; height: 280px; position: relative; margin-top: auto; margin-bottom: 20px; overflow: hidden; transform: scale(0.85); transform-origin: top center;}
+.nd-compass-ring { width: 100%; height: 100%; border-radius: 50%; border: 2px solid var(--boeing-white); position: absolute; }
+.nd-compass-rose { position: absolute; width: 100%; height: 100%; }
+.nd-ac-symbol { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 24px solid var(--boeing-white); z-index: 10; }
+
+/* BOEING EIS ENGINE DISPLAY */
+.eis { padding: 10px 15px; display: flex; flex-direction: column; }
+.eis-top-row { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: bold; color: var(--boeing-cyan); margin-bottom: 10px;}
+.eis-top-row .green { color: var(--boeing-green); }
+.eis-dials-wrapper { display: flex; flex-direction: column; gap: 10px; margin-top: 5px;}
+.dial-block { position: relative; display: flex; flex-direction: column; align-items: center; }
+.dial-title { position: absolute; top: 35px; width: 100%; text-align: center; color: var(--boeing-cyan); font-size: 1.2rem; font-weight: bold; z-index: 15;}
+.rev-indicators { position: absolute; top: 10px; width: 85%; display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; z-index: 20; }
+.rev-text { color: var(--boeing-bg); }
+.dials-row { display: flex; justify-content: space-around; width: 100%; }
+.dial-container { position: relative; width: 120px; height: 120px; }
+.dial-svg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: visible;}
+.dial-readout { position: absolute; top: 12px; right: -5px; background: #000; border: 2px solid var(--boeing-white); color: var(--boeing-white); font-size: 1.6rem; font-weight: bold; padding: 0 4px; text-align: right; min-width: 55px; }
+
+.egt-block { transform: scale(0.85); margin-top: -15px;}
+.egt-container { height: 100px; width: 100px;}
+.egt-readout { top: 15px; font-size: 1.4rem;}
+.secondary-block { display: grid; grid-template-columns: 80px 100px 80px; justify-content: center; gap: 8px 10px; font-size: 1.2rem; font-weight: bold; margin-top: 20px;}
+.sec-lbl { color: var(--boeing-cyan); text-align: center; }
+.sec-val { color: var(--boeing-white); text-align: right; }
+.sec-val-l { color: var(--boeing-white); text-align: left; }
+
+/* Expandable Tab */
+details.design-doc-tab summary::-webkit-details-marker {
+    display: none;
 }
-
-@media screen and (min-width: 768px) {
-    body { background-color: var(--tablet-bg); color: var(--tablet-text); }
-    .hero-anim-box { background: linear-gradient(to bottom, #78909C, #B0BEC5); }
-    section { background-color: var(--tablet-panel); border: 2px solid var(--tablet-text); box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2); }
-    header { background-color: var(--tablet-panel); border-bottom-color: var(--tablet-accent); }
-    button, .btn { background-color: #455A64; border-bottom: 4px solid var(--tablet-accent); }
-    footer { background-color: #37474F; color: white; }
-    .threshold-bar { opacity: 0.7; }
-    
-    /* Tablet/Desktop Flexbox Adjustments */
-    nav ul {
-        flex-direction: row; /* Horizontal links */
-        justify-content: center;
-    }
-    nav a { width: auto; }
-    
-    .footer-content {
-        flex-direction: row; /* Horizontal footer */
-        justify-content: space-between;
-    }
-    .footer-text { text-align: right; }
+details.design-doc-tab summary {
+    list-style: none;
+    padding-bottom: 0;
 }
-
-@media screen and (min-width: 1024px) {
-    body { background-color: var(--desktop-bg); color: var(--desktop-text); }
-    
-    .aviation-bg {
-        background-image:
-            linear-gradient(var(--grid-color) 1px, transparent 1px),
-            linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-            conic-gradient(from 0deg at 50% 50%, transparent 80%, rgba(0, 230, 118, 0.1) 100%);
-        background-size: 50px 50px, 100% 100%;
-        animation: radar-sweep 4s linear infinite;
-    }
-
-    @keyframes radar-sweep { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(0deg); } }
-
-    .hero-anim-box { background: linear-gradient(to bottom, #000000 0%, #0d1b2a 100%); border-color: #333; }
-
-    .nose-gear-light {
-        display: block; position: absolute; left: 175px; top: 68px; width: 8px; height: 8px;
-        background: white; border-radius: 50%; box-shadow: 0 0 12px white; z-index: 15;
-        animation: blink 0.3s infinite alternate;
-    }
-
-    @keyframes blink { 0% { opacity: 0.3; } 100% { opacity: 1; } }
-
-    header { display: flex; justify-content: space-between; align-items: center; background-color: #000; border-bottom: 2px solid var(--desktop-accent); padding: 0 40px; }
-    header h1 { color: var(--desktop-accent); font-size: 1.5rem; margin: 0; }
-    .subtitle { display: none; }
-    
-    nav ul { margin: 0; }
-    nav a { color: var(--desktop-accent); border-color: var(--desktop-accent); background: transparent; }
-    nav a:hover { background-color: var(--desktop-accent); color: black; }
-
-    main { max-width: 900px; margin: 0 auto; }
-    section { background-color: var(--desktop-panel); color: var(--desktop-text); border: 1px solid #333; border-left: 10px solid var(--desktop-yellow); }
-    h2 { color: var(--desktop-yellow); }
-    button, .btn { background-color: var(--desktop-accent); color: black; border-bottom: none; }
-
-    .papi-light.red { box-shadow: 0 0 15px var(--papi-red); }
-    .papi-light.white { box-shadow: 0 0 15px var(--papi-white); }
-    
-    footer { background-color: #000; color: var(--desktop-accent); }
-    .threshold-bar { background: radial-gradient(circle, #00E676 4px, transparent 5px); background-size: 30px 30px; background-position: center; border: none; filter: drop-shadow(0 0 5px #00E676); height: 30px; opacity: 1; }
+details.design-doc-tab summary::after {
+    content: '[ + ]';
+    color: var(--tech-accent);
+    font-family: var(--hud-font);
+    font-weight: bold;
+}
+details.design-doc-tab[open] summary::after {
+    content: '[ - ]';
 }
