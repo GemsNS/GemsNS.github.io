@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Aviation enthusiast building Java and web dev projects including NotTorn, a text-based crime simulation RPG.">
+    <meta name="theme-color" content="#000000">
     <title>Joel Al Gohri Sayed | IT Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,20 +123,65 @@
                     <div class="panel-header"><h2>SEC 05 // COMM</h2></div>
                     <p><span class="highlight">EMAIL:</span> w0514987@campus.nscc.ca</p>
                     <p><span class="highlight">LOC:</span> Halifax, Nova Scotia</p>
-                    <a href="https://www.linkedin.com/in/joel-a-785a273a3" target="_blank" class="btn" style="margin-top: 15px;">LINKEDIN_CONNECT &rarr;</a>
+                    <a href="https://www.linkedin.com/in/joel-a-785a273a3" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 15px;">LINKEDIN_CONNECT &rarr;</a>
                 </section>
             </div>
 
-            <div class="tech-panel" style="margin-top: 20px;">
-                <details class="design-doc-tab">
-                    <summary class="panel-header" style="cursor: pointer; margin-bottom: 0;">
-                        <h2 style="display: inline-block;">SEC 06 // DESIGN REFLECTION</h2>
-                    </summary>
-                    <div style="margin-top: 15px;">
-                        <p>The initial wireframe provided a basic structure for the portfolio. I changed the layout significantly during the build phase. The original plan featured a simple text list for the skills section. I updated this into a CSS grid. A grid organizes the information better and makes it easier for users to read. I also incorporated an aviation theme with specific colors and fonts to reflect personal interests. I added custom animations to make the interface more engaging. These changes improve user experience and visual appeal. I learned that wireframes serve only as starting points. Building the site requires flexibility. You adapt the design as new technical possibilities emerge during development.</p>
+            <section id="nottorn" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 06 // PROJECT // NOTTORN</h2>
+                    <a href="https://github.com/GemsNS/NotTorn" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">NotTorn</span> &mdash; Text-Based Crime Simulation RPG
+                            <div class="project-tags">
+                                <span class="project-tag tag-java">Java 17</span>
+                                <span class="project-tag tag-lanterna">Lanterna 3.1.2</span>
+                                <span class="project-tag tag-jackson">Jackson 2.16.1</span>
+                                <span class="project-tag tag-game">Idle-Progression RPG</span>
+                            </div>
+                        </div>
                     </div>
-                </details>
-            </div>
+                    <p>A single-player idle-progression RPG written in Java. Navigate a living city of eight districts, commit crimes, manage a dynamic supply-demand economy, and fight AI-driven enemies in turn-based combat — all rendered inside a retro Swing terminal window. Stats persist offline; every missed tick is applied instantly on next boot.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">CITY &amp; WORLD</span>
+                            8 connected districts — City Center, Gym, Hospital, Dark Alley, Item Market, Police Station, Bank, Drug Store. Full ASCII city map on demand.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">CRIME ENGINE</span>
+                            10 crime types. Nerve-gated access, CE-based success rolls (up to +20% at 5,000 CE), timed jail lockouts on failure.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">COMBAT SYSTEM</span>
+                            Turn-based fights up to 25 rounds. 14 weighted hitboxes, 12% base crit chance, log-table hit/mitigation math, BigInteger battle stats.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">LIVE ECONOMY</span>
+                            Supply/demand pricing: <code>price = base × (refSupply / supply)^0.5</code>. 5% sales tax, 20 tradeable items, price clamped 20%–500% of base.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">OFFLINE TICKS</span>
+                            60 Hz fixed-timestep loop. Offline catch-up engine calculates every missed regen tick and applies it on load.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">CAREERS &amp; TRAVEL</span>
+                            4 career paths with auto-promotion. 11 international destinations with flight-time lockouts, each with exact ticket costs.
+                        </div>
+                    </div>
+
+                    <div class="nottorn-screenshots">
+                        <img src="https://i.imgur.com/v7j3JDr.png" alt="NotTorn — Main UI city overview and stats panel" loading="lazy">
+                        <img src="https://i.imgur.com/pbKQyFs.png" alt="NotTorn — Crime menu" loading="lazy">
+                        <img src="https://i.imgur.com/lPT2pDT.png" alt="NotTorn — Turn-based combat" loading="lazy">
+                        <img src="https://i.imgur.com/VlqIGtz.png" alt="NotTorn — City map panel" loading="lazy">
+                    </div>
+                </div>
+            </section>
         </main>
         <footer>
             <div class="threshold-bar"></div>
@@ -377,35 +424,88 @@
         function triggerGoAround() {
             const plane = document.querySelector('.plane-wrapper');
             if (!plane || plane.classList.contains('executing-ga')) return;
-            
-            if(active2DPlane) active2DPlane.kill();
+
+            if (active2DPlane) active2DPlane.kill();
             gsap.killTweensOf(portfolioState);
-            
-            gsap.set(['.main-smoke', '.nose-smoke', '.nose-gear-light'], {display: 'none'});
+
+            gsap.set(['.main-smoke', '.nose-smoke', '.nose-gear-light'], { display: 'none' });
             plane.classList.add('executing-ga');
 
-            let currentRot = gsap.getProperty(plane, "rotation") || 0;
-
-            const rect = plane.getBoundingClientRect();
             const containerRect = document.getElementById('sky-container').getBoundingClientRect();
+            const rect = plane.getBoundingClientRect();
             const currentLeft = rect.left - containerRect.left;
-            const currentTop = rect.top - containerRect.top;
+            const currentTop  = rect.top  - containerRect.top;
+            const currentRot  = gsap.getProperty(plane, "rotation") || 0;
 
             gsap.set(plane, { left: currentLeft, top: currentTop, x: 0, y: 0, rotation: currentRot });
-            
-            let gaTl = gsap.timeline({
-                onComplete: () => { if (plane.parentNode) plane.remove(); }
-            });
 
-            gaTl.to(plane, { rotation: -15, duration: 1.5, ease: "sine.inOut" }, 0);
-            gaTl.to(plane, { top: currentTop + 15, duration: 0.8, ease: "sine.out" }, 0); 
-            gaTl.to(plane, { left: currentLeft + 1000, duration: 5, ease: "power1.in" }, 0); 
-            gaTl.to(plane, { top: currentTop - 400, duration: 4.2, ease: "power2.in" }, 0.8); 
+            // touchdownY ~190px; container is 300px — anything past 55% is on/near the runway
+            const isGrounded = currentTop > containerRect.height * 0.55;
+            const gaTl = gsap.timeline({ onComplete: () => { if (plane.parentNode) plane.remove(); } });
 
-            els.fma_vert.innerText = "TO/GA"; els.fma_lat.innerText = "TO/GA"; els.fma_spd.innerText = "THR HLD";
-            els.gear1.innerText = "UP"; els.gear2.innerText = "UP";
-            portfolioState.gsDev = -50; 
-            gsap.to(portfolioState, { targetSpeed: 160, pitch: 15, altitude: 2000, n1: 96, duration: 6, ease: "power2.inOut" });
+            if (isGrounded) {
+                // ── TAKEOFF ROLL ──────────────────────────────────────────────────
+                // Plane is on or just leaving the runway. No sinking — it accelerates
+                // along the ground, rotates at VR, then climbs away at a shallow angle.
+
+                // Snap attitude level (remove any post-touchdown drift)
+                gaTl.to(plane, { rotation: 0, duration: 0.25, ease: "none" }, 0);
+
+                // Long takeoff roll — accelerating (power2.in = speed builds like a real roll)
+                gaTl.to(plane, { left: currentLeft + 2800, duration: 8.0, ease: "power2.in" }, 0);
+
+                // Hold ground level for the roll (VR ~2.3s in)
+                gaTl.to(plane, { top: currentTop, duration: 2.3, ease: "none" }, 0);
+
+                // Rotation at VR: nose pitches firmly to +15°
+                gaTl.to(plane, { rotation: -15, duration: 1.2, ease: "power1.out" }, 2.3);
+
+                // Climb: lift-off → rate builds from zero as wings generate lift
+                // ~7.5° effective flight path over 2800px right ≈ 370px rise — realistic ratio
+                gaTl.to(plane, { top: currentTop - 370, duration: 5.7, ease: "power1.in" }, 2.3);
+
+            } else {
+                // ── GO-AROUND FROM APPROACH ───────────────────────────────────────
+                // Aircraft has residual downward velocity on the glide path (~-3° flight
+                // path angle). Thrust application precedes flight path recovery by ~2–3 s.
+                //
+                // Real 737 at 145 kt, 2000 fpm climb:
+                //   flight path angle ≈ arctan(2000 / 14600) ≈ 7.8°
+                //   for 2400px horizontal → ~330px vertical rise — target ratio.
+
+                // 1. Residual aerodynamic sink (~0.7 s, ~18 px — thrust hasn't overcome inertia yet)
+                gaTl.to(plane, { top: currentTop + 18, duration: 0.7, ease: "sine.in" }, 0);
+
+                // 2. Pitch attitude rises to +15° (attitude LEADS flight path — realistic separation)
+                gaTl.to(plane, { rotation: -15, duration: 1.5, ease: "power1.out" }, 0.3);
+
+                // 3. Horizontal: aircraft surges forward on TO/GA thrust (accelerating)
+                gaTl.to(plane, { left: currentLeft + 2600, duration: 7.5, ease: "power1.in" }, 0);
+
+                // 4. Climb: flight path transitions negative → zero → positive.
+                //    power1.in = rate starts near zero (levelling off) and builds — correct.
+                //    Net vertical: sink 18px then climb 348px → net -330px from start (off-screen top)
+                gaTl.to(plane, { top: (currentTop + 18) - 348, duration: 6.8, ease: "power1.in" }, 0.7);
+            }
+
+            // FMA sequence — realistic staging
+            els.fma_spd.innerText = "THR HLD";
+            els.fma_vert.innerText = "GA TRK";
+            els.fma_lat.innerText  = "TO/GA";
+            els.fma_vert.style.color = "#FFFFFF";
+            els.fma_lat.style.color  = "#FFFFFF";
+            // Gear up: after positive climb confirmed (longer delay on takeoff roll)
+            setTimeout(() => { els.gear1.innerText = "UP"; els.gear2.innerText = "UP"; },
+                isGrounded ? 3400 : 1800);
+            // Armed state once fully established
+            setTimeout(() => {
+                els.fma_vert.innerText = "TO/GA";
+                els.fma_spd.innerText  = "TO/GA";
+                els.fma_vert.style.color = "#00FF00";
+            }, isGrounded ? 4000 : 2400);
+
+            portfolioState.gsDev = -50;
+            gsap.to(portfolioState, { targetSpeed: 160, pitch: 15, altitude: 2000, n1: 96, duration: 7, ease: "power2.out" });
         }
         
         spawnPlane(); setInterval(() => { if(!document.querySelector('.plane-wrapper.executing-ga')) spawnPlane(); }, 15000);
