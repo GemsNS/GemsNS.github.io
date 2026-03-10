@@ -300,10 +300,15 @@ footer { background-color: #000; font-family: var(--hud-font); border-top: 1px s
 
 .nottorn-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 15px;
 }
+@media (min-width: 768px { 
+.nottorn-features{
+grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+
+}}
 .feature-item {
     border: 1px solid var(--tech-border);
     padding: 10px 12px;
@@ -337,3 +342,4 @@ footer { background-color: #000; font-family: var(--hud-font); border-top: 1px s
     .nottorn-screenshots img { height: 80px; }
     .nottorn-features { grid-template-columns: 1fr 1fr; }
 }
+
