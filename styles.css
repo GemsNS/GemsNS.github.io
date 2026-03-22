@@ -369,6 +369,7 @@ footer { background-color: #000; font-family: var(--hud-font); border-top: 1px s
     gap: 10px;
     margin-top: 15px;
 }
+
 .feature-item {
     border: 1px solid var(--tech-border);
     padding: 10px 12px;
@@ -402,3 +403,5 @@ footer { background-color: #000; font-family: var(--hud-font); border-top: 1px s
     .nottorn-screenshots img { height: 80px; }
     .nottorn-features { grid-template-columns: 1fr 1fr; }
 }
+
+
