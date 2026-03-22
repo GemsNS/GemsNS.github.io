@@ -113,7 +113,8 @@
                     <div class="panel-header"><h2>SEC 04 // LOGBOOK</h2></div>
                     <ul class="tech-list">
                         <li>Development Portfolio (Website Development)</li>
-                        <li>Java Application (Logic & Programming)</li>
+                        <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (Logic &amp; Programming)</li>
+                        <li><a href="#seaside" style="color: var(--tech-accent); text-decoration: none;">Seaside Contracting</a> — Next.js Marketing Site (Web Development)</li>
                         <li>Networking Toolkit (Intro to Networking)</li>
                         <li>Virtual Machine Environments (OSYS)</li>
                     </ul>
@@ -179,6 +180,73 @@
                         <img src="https://i.imgur.com/pbKQyFs.png" alt="NotTorn — Crime menu" loading="lazy">
                         <img src="https://i.imgur.com/lPT2pDT.png" alt="NotTorn — Turn-based combat" loading="lazy">
                         <img src="https://i.imgur.com/VlqIGtz.png" alt="NotTorn — City map panel" loading="lazy">
+                    </div>
+                </div>
+            </section>
+
+            <section id="seaside" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 07 // PROJECT // SEASIDE CONTRACTING</h2>
+                    <a href="https://github.com/GemsNS/Seaside-Contracting" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">Seaside Contracting</span> &mdash; Nova Scotia Marketing Site
+                            <div class="project-tags">
+                                <span class="project-tag tag-next">Next.js App Router</span>
+                                <span class="project-tag tag-ts">TypeScript</span>
+                                <span class="project-tag tag-motion">Framer Motion</span>
+                                <span class="project-tag tag-web">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>A production-ready marketing site built for a Nova Scotia contracting business. Features a full CI/CD pipeline deploying to GitHub Pages via GitHub Actions, a server-side contact form powered by the Resend API, animated page transitions, and a brand preview page for vehicle-wrap and signage mockups.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">STACK</span>
+                            Next.js App Router with static export, TypeScript strict mode, Tailwind CSS utility-first styling.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ANIMATIONS</span>
+                            Framer Motion page transitions and scroll-reveal effects throughout the site.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">CONTACT FORM</span>
+                            API route backed by Resend for transactional email. Validates server-side; degrades gracefully without a key.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">CI/CD PIPELINE</span>
+                            GitHub Actions workflow: <code>next build</code> → static export → deploy to GitHub Pages on every push to main.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">BRAND SYSTEM</span>
+                            Dedicated <code>/brand-preview</code> page: vehicle-wrap mockup and four direction boards for fleet and signage reference.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ASSET PIPELINE</span>
+                            <code>npm run assets:sync</code> copies updated brand PNGs from <code>assets/</code> into <code>public/brand/</code> for the build.
+                        </div>
+                    </div>
+
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">gemsns.github.io/Seaside-Contracting/</div>
+                        </div>
+                        <iframe
+                            src="https://gemsns.github.io/Seaside-Contracting/"
+                            title="Seaside Contracting — live site preview"
+                            loading="lazy"
+                            allow="same-origin">
+                        </iframe>
+                        <a class="browser-open-link" href="https://gemsns.github.io/Seaside-Contracting/" target="_blank" rel="noopener noreferrer">
+                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
+                        </a>
                     </div>
                 </div>
             </section>
