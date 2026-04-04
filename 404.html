@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // Grab the URL path the user tried to visit and force it to lowercase
+    var currentPath = window.location.pathname.toLowerCase();
+    
+    // If they typed the lowercase repo name, redirect them to the uppercase URL
+    if (currentPath.startsWith("/seaside-contracting")) {
+      window.location.replace("https://GemsNS.github.io/Seaside-Contracting/");
+    } 
+  </script>
+</head>
+<body>
+  <h1>404 - Page Not Found</h1>
+  <p>Sorry, the page you are looking for does not exist.</p>
+</body>
+</html>
