@@ -115,6 +115,8 @@
                         <li>Development Portfolio (Website Development)</li>
                         <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (Logic &amp; Programming)</li>
                         <li><a href="#seaside" style="color: var(--tech-accent); text-decoration: none;">Seaside Contracting</a> — Next.js Marketing Site (Web Development)</li>
+                        <li><a href="#ncc" style="color: var(--tech-accent); text-decoration: none;">NCC Family</a> — Church Platform Rebrand (Full-Stack Web)</li>
+                        <li><a href="#textflight" style="color: var(--tech-accent); text-decoration: none;">Text Flight</a> — Java Terminal Game (Final Project)</li>
                         <li>Networking Toolkit (Intro to Networking)</li>
                         <li>Virtual Machine Environments (OSYS)</li>
                     </ul>
@@ -247,6 +249,143 @@
                         <a class="browser-open-link" href="https://gemsns.github.io/Seaside-Contracting/" target="_blank" rel="noopener noreferrer">
                             &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
                         </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ncc" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 08 // PROJECT // NCC FAMILY</h2>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://gemsns.github.io/ncc/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
+                        <a href="https://github.com/GemsNS/ncc" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">New Community Church</span> &mdash; Suffolk, VA &mdash; Full Digital Rebrand
+                            <div class="project-tags">
+                                <span class="project-tag tag-vanilla">HTML / CSS / JS</span>
+                                <span class="project-tag tag-node">Node.js Backend</span>
+                                <span class="project-tag tag-cobalt">12-Phase Build</span>
+                                <span class="project-tag tag-web">GitHub Pages</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>A ground-up digital rebrand for New Community Church. Built across 12 development phases — from brand system and multi-page site through to a custom Node.js admin backend, live sermon archive, media lifecycle management, and a GitHub Pages static deployment pipeline. Brand identity anchored in Electric Cobalt and Neon Cyan on a dark-first aesthetic.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">SITE PAGES</span>
+                            12+ pages: Home, About, Ministries, Messages, Gallery, Events, Contact, Give, Admin, Brand, and more.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ADMIN BACKEND</span>
+                            Node.js service with auth routes, media upload/lifecycle (draft → review → published → archived), and audit trail.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">SERMON ARCHIVE</span>
+                            Live media archive with search, tag and speaker filtering, sermon notes support, and rich metadata rendering.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">LIGHT / DARK MODE</span>
+                            Global theme toggle with persistent state. Full light-mode contrast pass across all pages.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">BRAND SYSTEM</span>
+                            Electric Cobalt / Neon Cyan palette, glassmorphism panels, mesh gradients, glow CTAs, and a dedicated <code>brand.html</code> reference page.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">EMBED RELIABILITY</span>
+                            Multi-layer social/media fallback: timed load checks, error handling, professional offline overlays, and retry controls.
+                        </div>
+                    </div>
+
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">gemsns.github.io/ncc/</div>
+                        </div>
+                        <iframe
+                            src="https://gemsns.github.io/ncc/"
+                            title="NCC Family — live site preview"
+                            loading="lazy"
+                            allow="same-origin">
+                        </iframe>
+                        <a class="browser-open-link" href="https://gemsns.github.io/ncc/" target="_blank" rel="noopener noreferrer">
+                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="textflight" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 09 // PROJECT // TEXT FLIGHT</h2>
+                    <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">COURSE FINAL PROJECT</span>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">Text Flight</span> &mdash; Java Terminal Flight Simulation
+                            <div class="project-tags">
+                                <span class="project-tag tag-java">Java</span>
+                                <span class="project-tag tag-vanilla">Terminal / Console</span>
+                                <span class="project-tag tag-game">Logic &amp; Programming</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>A text-based flight simulator written in Java for a Logic &amp; Programming final project. The player works through a pre-flight checklist, manages fuel, altitude, speed, and distance across multiple flight turns, then attempts a landing with up to two go-arounds. Built to demonstrate core Java language constructs in a cohesive, aviation-themed program.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">PREFLIGHT CHECKLIST</span>
+                            <code>ArrayList&lt;String&gt;</code> holds checklist steps; a <code>for</code> loop walks each item and validates the player's input against <code>"ok"</code>.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">FLIGHT LOOP</span>
+                            <code>while</code> loop drives each turn. Player picks cruise / climb / descend; fuel, altitude, speed, and distance update each pass via a <code>switch</code>.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">TURBULENCE ENGINE</span>
+                            <code>Random.nextInt()</code> gives a 30% chance of turbulence per turn, draining 1–4 extra fuel — adding unpredictability to every flight.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">LANDING &amp; GO-AROUND</span>
+                            Up to 2 go-arounds tracked with a counter. Landing outcome branches on speed, altitude, and fuel via <code>&amp;&amp;</code> / <code>||</code> compound conditions.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">MAIN MENU LOOP</span>
+                            <code>do-while</code> keeps the main menu alive until the player selects quit (pick 3), satisfying the persistent-loop course requirement.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">SAFE INPUT PARSING</span>
+                            <code>readIntSafe()</code> wraps <code>Integer.parseInt()</code> in a try-catch for <code>NumberFormatException</code>, returning <code>-1</code> on bad input instead of crashing.
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding: 16px; background: #000; border: 1px solid var(--tech-border); font-family: var(--hud-font); font-size: 0.8rem; line-height: 1.8; color: #9ca3af;">
+                        <div style="color: var(--tech-accent); margin-bottom: 8px;">// SAMPLE RUN</div>
+                        <div>=== text flight (terminal) ===</div>
+                        <div style="color: #6b7280;">1 start mission &nbsp; 2 help &nbsp; 3 quit</div>
+                        <div>pick: <span style="color: #fff;">1</span></div>
+                        <div style="color: #6b7280;">-- preflight --</div>
+                        <div>1) check fuel gauge &nbsp; type ok: <span style="color: #fff;">ok</span></div>
+                        <div>2) check engines &nbsp; type ok: <span style="color: #fff;">ok</span></div>
+                        <div>3) release brake &nbsp; type ok: <span style="color: #fff;">ok</span></div>
+                        <div style="color: var(--tech-accent);">wheels up</div>
+                        <div style="color: #6b7280; margin-top: 4px;">-- flying --</div>
+                        <div>turn 1 | fuel ~100 | alt 500 | speed 420 | dist 150 km</div>
+                        <div style="color: #6b7280;">1 cruise &nbsp; 2 climb &nbsp; 3 descend</div>
+                        <div>action: <span style="color: #fff;">1</span> &nbsp; <span style="color: #f59e0b;">turbulence... -3 fuel</span></div>
+                        <div>turn 2 | fuel ~92 | alt 500 | speed 415 | dist 125 km</div>
+                        <div style="color: #6b7280;">...</div>
+                        <div style="color: var(--tech-accent);">smooth landing</div>
                     </div>
                 </div>
             </section>

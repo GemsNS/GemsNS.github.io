@@ -362,6 +362,9 @@ footer { background-color: #000; font-family: var(--hud-font); border-top: 1px s
 .tag-ts       { border-color: #3B82F6; color: #3B82F6; }
 .tag-motion   { border-color: #ec4899; color: #ec4899; }
 .tag-web      { border-color: #34d399; color: #34d399; }
+.tag-node     { border-color: #6ead3a; color: #6ead3a; }
+.tag-cobalt   { border-color: #2E42FF; color: #6b7bff; }
+.tag-vanilla  { border-color: #f59e0b; color: #f59e0b; }
 
 .nottorn-features {
     display: grid;
