@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Aviation enthusiast building Java and web dev projects including NotTorn, a text-based crime simulation RPG.">
+    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Aviation enthusiast building Java and web projects including NotTorn, NCC Family platform work, and static book/presale landings.">
     <meta name="theme-color" content="#000000">
     <title>Joel Al Gohri Sayed | IT Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,6 +115,7 @@
                         <li>Development Portfolio (Website Development)</li>
                         <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (Logic &amp; Programming)</li>
                         <li><a href="#seaside" style="color: var(--tech-accent); text-decoration: none;">Seaside Contracting</a> — Next.js Marketing Site (Web Development)</li>
+                        <li><a href="#booksales" style="color: var(--tech-accent); text-decoration: none;">When Seasons Change</a> — pinnaclepublishinggroup.net (Static Web)</li>
                         <li><a href="#ncc" style="color: var(--tech-accent); text-decoration: none;">NCC Family</a> — Church Platform Rebrand (Full-Stack Web)</li>
                         <li><a href="#textflight" style="color: var(--tech-accent); text-decoration: none;">Text Flight</a> — Java Terminal Game (Final Project)</li>
                         <li>Networking Toolkit (Intro to Networking)</li>
@@ -253,9 +254,78 @@
                 </div>
             </section>
 
+            <section id="booksales" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 08 // PROJECT // WHEN SEASONS CHANGE</h2>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                        <a href="https://pinnaclepublishinggroup.net/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
+                        <span class="project-tag tag-vanilla" style="padding: 6px 12px; font-size: 0.8rem;">STATIC MULTI-PAGE</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">When Seasons Change</span> &mdash; Pinnacle Publishing Group Book Landing
+                            <div class="project-tags">
+                                <span class="project-tag tag-vanilla">HTML / CSS / JS</span>
+                                <span class="project-tag tag-web">No Build Step</span>
+                                <span class="project-tag tag-motion">Hero Carousel UI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Live at <a href="https://pinnaclepublishinggroup.net/" target="_blank" rel="noopener noreferrer" style="color: var(--tech-accent);">pinnaclepublishinggroup.net</a> &mdash; a plain static multi-page experience for Anthony VanDyke&apos;s devotional <em>When Seasons Change</em> (30-day seasonal reflections, presale messaging, and author presence). Built from the <code>booksales</code> project: Slide Revolution&ndash;style hero carousel, book/author/presale routes, and a seeded JavaScript generator that paints a stained-glass glow via layered <code>text-shadow</code> so the art direction holds without a preprocessor pipeline.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">INFORMATION ARCHITECTURE</span>
+                            Four primary surfaces &mdash; Home, Book, Author, and Presale &mdash; plus outbound link to AnthonyInspiration for extended ministry content.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">HERO SHOWCASE</span>
+                            Four-season carousel with layered photography, gradient tints, and keyed overlay assets for a high-end publishing presentation.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ATMOSPHERE ENGINE</span>
+                            Floating stained-glass treatment generated in <code>js/main.js</code> with deterministic seeds so the effect is rich yet cache-friendly.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">COMMERCE READY</span>
+                            CTA placeholders wired for real checkout URLs (Amazon, Stripe, Shopify, Gumroad, etc.) once campaigns go live.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">TYPOGRAPHY STACK</span>
+                            Crimson Pro, Inter, and Montserrat via Google Fonts for editorial headings and crisp marketing copy.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ACCESSIBILITY TOUCHES</span>
+                            Skip links, carousel semantics (<code>aria-roledescription</code>), and keyboard-friendly navigation patterns throughout.
+                        </div>
+                    </div>
+
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">pinnaclepublishinggroup.net</div>
+                        </div>
+                        <iframe
+                            src="https://pinnaclepublishinggroup.net/"
+                            title="When Seasons Change — Pinnacle Publishing Group live site preview"
+                            loading="lazy"
+                            allow="same-origin">
+                        </iframe>
+                        <a class="browser-open-link" href="https://pinnaclepublishinggroup.net/" target="_blank" rel="noopener noreferrer">
+                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section id="ncc" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
-                    <h2>SEC 08 // PROJECT // NCC FAMILY</h2>
+                    <h2>SEC 09 // PROJECT // NCC FAMILY</h2>
                     <div style="display:flex; gap: 10px; flex-wrap: wrap;">
                         <a href="https://gemsns.github.io/ncc/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
                         <a href="https://github.com/GemsNS/ncc" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
@@ -274,32 +344,32 @@
                             </div>
                         </div>
                     </div>
-                    <p>A ground-up digital rebrand for New Community Church. Built across 12 development phases — from brand system and multi-page site through to a custom Node.js admin backend, live sermon archive, media lifecycle management, and a GitHub Pages static deployment pipeline. Brand identity anchored in Electric Cobalt and Neon Cyan on a dark-first aesthetic.</p>
+                    <p>A ground-up digital rebrand for New Community Church, extended through an April 2026 release candidate focused on staff workflows: day-to-day admin at <code>admin.html</code> (events, prayer follow-up, JSON site control), GitHub Pages demo mode for stakeholder previews, a public Prayer Chat pipeline with optional AI-assisted replies, and tighter livestream/video embed governance. Earlier phases delivered the brand system, multi-page site, Node.js backend, sermon archive, media lifecycle, and static deploy pipeline &mdash; still anchored in Electric Cobalt and Neon Cyan on a dark-first aesthetic.</p>
 
                     <div class="nottorn-features">
                         <div class="feature-item">
                             <span class="feature-label">SITE PAGES</span>
-                            12+ pages: Home, About, Ministries, Messages, Gallery, Events, Contact, Give, Admin, Brand, and more.
+                            12+ public routes (Home, About, Ministries, Messages, Gallery, Events, Contact, Give, Admin, Brand, etc.) plus a hidden <code>blog.html</code> prototype (markdown + admin module, off-menu by design).
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">ADMIN BACKEND</span>
-                            Node.js service with auth routes, media upload/lifecycle (draft → review → published → archived), and audit trail.
+                            <span class="feature-label">STAFF ADMIN &amp; DEMO MODE</span>
+                            Events CRUD feeds the public calendar; Prayer Chat conversations land in a staff inbox; JSON editor controls livestream ticker, video slots, and calendar feeds. GitHub Pages &ldquo;Demo Mode&rdquo; mirrors flows with localStorage + bundled sample content &mdash; no backend required for walkthroughs.
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">SERMON ARCHIVE</span>
-                            Live media archive with search, tag and speaker filtering, sermon notes support, and rich metadata rendering.
+                            Searchable media archive with tag/speaker filters, sermon notes support, and rich metadata rendering tied to the publishing workflow.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">LIGHT / DARK MODE</span>
-                            Global theme toggle with persistent state. Full light-mode contrast pass across all pages.
+                            <span class="feature-label">LIVESTREAM &amp; MANAGED VIDEO</span>
+                            Config-driven ticker, manual or scheduled live status, and per-service timeline overlays. Centralized <code>data-ncc-video</code> slots with overlay overrides plus hardened embed-failure messaging.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">BRAND SYSTEM</span>
-                            Electric Cobalt / Neon Cyan palette, glassmorphism panels, mesh gradients, glow CTAs, and a dedicated <code>brand.html</code> reference page.
+                            <span class="feature-label">PRAYER CHAT</span>
+                            Floating on-site Prayer Chat with optional server-side AI replies (OpenAI when configured), stored threads for staff review, and a lightweight local helper when APIs are offline.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">EMBED RELIABILITY</span>
-                            Multi-layer social/media fallback: timed load checks, error handling, professional offline overlays, and retry controls.
+                            <span class="feature-label">SECURITY &amp; DEPLOY</span>
+                            Draft/archived content blocked from public routes; production boot fails fast without critical secrets; atomic JSON writes for file storage; cPanel-style Node hosting documented for same-origin <code>/api</code>.
                         </div>
                     </div>
 
@@ -325,7 +395,7 @@
 
             <section id="textflight" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
-                    <h2>SEC 09 // PROJECT // TEXT FLIGHT</h2>
+                    <h2>SEC 10 // PROJECT // TEXT FLIGHT</h2>
                     <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">COURSE FINAL PROJECT</span>
                 </div>
 
