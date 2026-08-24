@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Portfolio includes pinnaclepublishinggroup.net (booksales), vandykehomeloans.net, NCC Family, BH Contracting CRM, Seaside Contracting, and NotTorn.">
+    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Portfolio includes BH Contracting (frontend + CRM backend), pinnaclepublishinggroup.net, gemsns.github.io/vandykehomeloans, NCC Family, and NotTorn.">
     <meta name="theme-color" content="#000000">
     <title>Joel Al Gohri Sayed | IT Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,11 +114,11 @@
                     <ul class="tech-list">
                         <li>Development Portfolio (Website Development)</li>
                         <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (v0.6.2)</li>
-                        <li><a href="#seaside" style="color: var(--tech-accent); text-decoration: none;">Seaside Contracting</a> — Next.js Marketing Site (Web Development)</li>
+                        <li><a href="#bhc-frontend" style="color: var(--tech-accent); text-decoration: none;">BH Contracting</a> — Public Site / Frontend (gemsns.github.io/BHC)</li>
                         <li><a href="#booksales" style="color: var(--tech-accent); text-decoration: none;">When Seasons Change</a> — booksales / pinnaclepublishinggroup.net</li>
-                        <li><a href="#vandykehomeloans" style="color: var(--tech-accent); text-decoration: none;">VanDyke Home Loans</a> — vandykehomeloans.net (Next.js + Postgres)</li>
+                        <li><a href="#vandykehomeloans" style="color: var(--tech-accent); text-decoration: none;">VanDyke Home Loans</a> — gemsns.github.io/vandykehomeloans (Next.js + Postgres)</li>
                         <li><a href="#ncc" style="color: var(--tech-accent); text-decoration: none;">NCC Family</a> — gemsns.github.io/ncc (Full-Stack Web)</li>
-                        <li><a href="#bhc" style="color: var(--tech-accent); text-decoration: none;">BH Contracting CRM</a> — gemsns.github.io/BHC (Next.js Field Ops)</li>
+                        <li><a href="#bhc-backend" style="color: var(--tech-accent); text-decoration: none;">BH Contracting</a> — CRM Backend &amp; Field Ops API</li>
                         <li><a href="#textflight" style="color: var(--tech-accent); text-decoration: none;">Text Flight</a> — Java Terminal Game (IT Programming Final)</li>
                         <li>Networking Toolkit (Intro to Networking)</li>
                         <li>Virtual Machine Environments (OSYS)</li>
@@ -193,50 +193,53 @@
                 </div>
             </section>
 
-            <section id="seaside" class="tech-panel" style="margin-top: 20px;">
+            <section id="bhc-frontend" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
-                    <h2>SEC 07 // PROJECT // SEASIDE CONTRACTING</h2>
-                    <a href="https://github.com/GemsNS/Seaside-Contracting" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                    <h2>SEC 07 // PROJECT // BH CONTRACTING — FRONTEND</h2>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://gemsns.github.io/BHC/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
+                        <a href="https://github.com/GemsNS/BHC" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-card-header">
                         <div>
-                            <span class="highlight">Seaside Contracting</span> &mdash; Nova Scotia Marketing Site
+                            <span class="highlight">BH Contracting Co.</span> &mdash; Public Marketing Frontend
                             <div class="project-tags">
-                                <span class="project-tag tag-next">Next.js App Router</span>
+                                <span class="project-tag tag-next">Next.js 15</span>
                                 <span class="project-tag tag-ts">TypeScript</span>
                                 <span class="project-tag tag-motion">Framer Motion</span>
-                                <span class="project-tag tag-web">Tailwind CSS</span>
+                                <span class="project-tag tag-web">Tailwind CSS v4</span>
                             </div>
                         </div>
                     </div>
-                    <p>A production-ready marketing site built for a Nova Scotia contracting business. Features a full CI/CD pipeline deploying to GitHub Pages via GitHub Actions, a server-side contact form powered by the Resend API, animated page transitions, and a brand preview page for vehicle-wrap and signage mockups.</p>
+                    <p>Customer-facing site for a Nova Scotia subcontractor &mdash; evolved from the original Seaside Contracting marketing build and rebranded for BH Contracting Co. Audience gate at <code>/</code> routes visitors to residential and commercial service pages, a job showcase gallery, and a brand-preview board for fleet/signage mockups. Staff enter through <strong>Staff login</strong> on the public header into the ops CRM.</p>
 
                     <div class="nottorn-features">
                         <div class="feature-item">
-                            <span class="feature-label">STACK</span>
-                            Next.js App Router with static export, TypeScript strict mode, Tailwind CSS utility-first styling.
+                            <span class="feature-label">PUBLIC ROUTES</span>
+                            <code>/</code> audience gate, <code>/residential</code>, <code>/commercial</code>, <code>/showcase</code>, and <code>/brand-preview</code> &mdash; full Halifax hero, exterior designer, and responsive header/footer chrome.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">ANIMATIONS</span>
-                            Framer Motion page transitions and scroll-reveal effects throughout the site.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">CONTACT FORM</span>
-                            API route backed by Resend for transactional email. Validates server-side; degrades gracefully without a key.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">CI/CD PIPELINE</span>
-                            GitHub Actions workflow: <code>next build</code> → static export → deploy to GitHub Pages on every push to main.
+                            <span class="feature-label">MOTION &amp; LAYOUT</span>
+                            Framer Motion page transitions and scroll-reveal effects; mobile-first responsive navigation with polished contracting-industry art direction.
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">BRAND SYSTEM</span>
-                            Dedicated <code>/brand-preview</code> page: vehicle-wrap mockup and four direction boards for fleet and signage reference.
+                            Dedicated brand-preview page with vehicle-wrap mockups and direction boards for fleet and signage reference &mdash; same design language as the live public site.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">ASSET PIPELINE</span>
-                            <code>npm run assets:sync</code> copies updated brand PNGs from <code>assets/</code> into <code>public/brand/</code> for the build.
+                            <span class="feature-label">STATIC DEPLOY</span>
+                            GitHub Pages export via <code>npm run build:gh-pages</code> with <code>NEXT_PUBLIC_BASE_PATH=/BHC</code>; one-command <code>deploy:gh-pages</code> publish to [gemsns.github.io/BHC](https://gemsns.github.io/BHC/).
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">STAFF HANDOFF</span>
+                            Public chrome links cleanly into <code>/login</code> for the role-gated admin and field-app shell &mdash; one repo, two surfaces (marketing vs operations).
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">QUALITY</span>
+                            ESLint + Vitest in the same Next.js codebase; TypeScript strict mode across all public pages and shared UI components.
                         </div>
                     </div>
 
@@ -245,15 +248,15 @@
                             <div class="browser-dots">
                                 <span></span><span></span><span></span>
                             </div>
-                            <div class="browser-url">gemsns.github.io/Seaside-Contracting/</div>
+                            <div class="browser-url">gemsns.github.io/BHC/</div>
                         </div>
                         <iframe
-                            src="https://gemsns.github.io/Seaside-Contracting/"
-                            title="Seaside Contracting — live site preview"
+                            src="https://gemsns.github.io/BHC/"
+                            title="BH Contracting — public site preview"
                             loading="lazy"
                             allow="same-origin">
                         </iframe>
-                        <a class="browser-open-link" href="https://gemsns.github.io/Seaside-Contracting/" target="_blank" rel="noopener noreferrer">
+                        <a class="browser-open-link" href="https://gemsns.github.io/BHC/" target="_blank" rel="noopener noreferrer">
                             &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
                         </a>
                     </div>
@@ -333,7 +336,7 @@
                 <div class="panel-header">
                     <h2>SEC 09 // PROJECT // VANDYKE HOME LOANS</h2>
                     <div style="display:flex; gap: 10px; flex-wrap: wrap;">
-                        <a href="https://vandykehomeloans.net/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
+                        <a href="https://gemsns.github.io/vandykehomeloans/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
                         <a href="https://github.com/GemsNS/vandykehomeloans" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
                     </div>
                 </div>
@@ -350,7 +353,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>Production web application at <a href="https://vandykehomeloans.net/" target="_blank" rel="noopener noreferrer" style="color: var(--tech-accent);">vandykehomeloans.net</a> &mdash; live published rates, mortgage calculators (P&amp;I, amortization, APR, DTI, affordability, refinance break-even), lead capture, and a protected broker admin CMS for rates, pipeline, and broker directory management.</p>
+                    <p>Live at <a href="https://gemsns.github.io/vandykehomeloans/" target="_blank" rel="noopener noreferrer" style="color: var(--tech-accent);">gemsns.github.io/vandykehomeloans</a> &mdash; production mortgage broker platform with published rates, calculators (P&amp;I, amortization, APR, DTI, affordability, refinance break-even), lead capture, and a protected broker admin CMS for rates, pipeline, and broker directory management.</p>
 
                     <div class="nottorn-features">
                         <div class="feature-item">
@@ -384,15 +387,15 @@
                             <div class="browser-dots">
                                 <span></span><span></span><span></span>
                             </div>
-                            <div class="browser-url">vandykehomeloans.net</div>
+                            <div class="browser-url">gemsns.github.io/vandykehomeloans/</div>
                         </div>
                         <iframe
-                            src="https://vandykehomeloans.net/"
+                            src="https://gemsns.github.io/vandykehomeloans/"
                             title="VanDyke Home Loans — live site preview"
                             loading="lazy"
                             allow="same-origin">
                         </iframe>
-                        <a class="browser-open-link" href="https://vandykehomeloans.net/" target="_blank" rel="noopener noreferrer">
+                        <a class="browser-open-link" href="https://gemsns.github.io/vandykehomeloans/" target="_blank" rel="noopener noreferrer">
                             &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
                         </a>
                     </div>
@@ -469,11 +472,11 @@
                 </div>
             </section>
 
-            <section id="bhc" class="tech-panel" style="margin-top: 20px;">
+            <section id="bhc-backend" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
-                    <h2>SEC 11 // PROJECT // BH CONTRACTING CRM</h2>
+                    <h2>SEC 11 // PROJECT // BH CONTRACTING — BACKEND</h2>
                     <div style="display:flex; gap: 10px; flex-wrap: wrap;">
-                        <a href="https://gemsns.github.io/BHC/" target="_blank" rel="noopener noreferrer" class="btn">LIVE DEMO &rarr;</a>
+                        <a href="https://gemsns.github.io/BHC/login" target="_blank" rel="noopener noreferrer" class="btn">LIVE DEMO &rarr;</a>
                         <a href="https://github.com/GemsNS/BHC" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
                     </div>
                 </div>
@@ -481,61 +484,45 @@
                 <div class="project-card">
                     <div class="project-card-header">
                         <div>
-                            <span class="highlight">BH Contracting Co.</span> &mdash; All-in-One Operations CRM
+                            <span class="highlight">BH Contracting Co.</span> &mdash; Operations CRM &amp; API Backend
                             <div class="project-tags">
-                                <span class="project-tag tag-next">Next.js 15</span>
+                                <span class="project-tag tag-next">Next.js API Routes</span>
                                 <span class="project-tag tag-ts">TypeScript</span>
-                                <span class="project-tag tag-motion">Framer Motion</span>
-                                <span class="project-tag tag-web">Tailwind CSS v4</span>
+                                <span class="project-tag tag-node">JSON Store</span>
+                                <span class="project-tag tag-web">Role-Based Auth</span>
                             </div>
                         </div>
                     </div>
-                    <p>Operations CRM and web-hosted field apps for a subcontracting company &mdash; role-based login, announcements, knocker zones, jobs, materials, fuel, fleet, hours, and stats. Demo deployed to GitHub Pages with localStorage-backed data; full mode uses JSON storage plus <code>/api/*</code> routes for local or cloud hosting.</p>
+                    <p>Server-side ops layer in the same <code>GemsNS/BHC</code> monorepo &mdash; employee login/PIN auth, permission-gated admin and field apps, and a full <code>/api/*</code> surface backed by <code>data/store.json</code>. GitHub Pages runs a client-side localStorage demo; full backend mode persists to JSON and exposes REST routes for scheduling, sales, inventory, and AI-assisted workflows.</p>
 
                     <div class="nottorn-features">
                         <div class="feature-item">
-                            <span class="feature-label">ROLE-GATED ACCESS</span>
-                            Employee login/PIN unlocks permission-scoped nav: Admin dashboard, Knocker app, Field apps hub, and time clock surfaces.
+                            <span class="feature-label">AUTH &amp; ROLES</span>
+                            Login + PIN per employee; session gates admin dashboard, knocker app, field-apps hub, and time clock. Demo accounts: admin, knocker, field, driver.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">FIELD OPERATIONS</span>
-                            Tools in/out checkout, inventory levels, damage reports with photos, job progress notes, and invoice vs full-report workflows.
+                            <span class="feature-label">OPS MODULES</span>
+                            Tools in/out, inventory, damage reports, job progress (photos + notes), invoices vs full job reports, announcements, knocker zones, fleet/fuel/materials tracking.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">SCHEDULING &amp; SALES</span>
-                            Team calendar, open shift pool, overtime tracking, and a unified sales hub (Pipeline, Client 360&deg;, Automation, Support, Outreach).
+                            <span class="feature-label">API SURFACE</span>
+                            Next.js route handlers including <code>/api/shifts</code>, <code>/api/seed</code>, and <code>/api/ai/summarize</code>; auto-seeded store with <code>POST /api/seed</code> reset for local dev.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">JARVIS LAYER</span>
-                            Contextual briefing bar and command palette on every screen for quick ops navigation and summaries.
+                            <span class="feature-label">SALES &amp; SCHEDULING</span>
+                            Unified sales hub (Pipeline, Client 360&deg;, Automation, Support, Outreach) plus team calendar and open shift pool with overtime tracking.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">QUALITY &amp; DEPLOY</span>
-                            Vitest test suite, ESLint, static export via <code>npm run build:gh-pages</code>, and one-command <code>deploy:gh-pages</code> publish.
+                            <span class="feature-label">INTELLIGENCE LAYER</span>
+                            JARVIS briefing bar + ⌘K command palette on every ops screen; MAINFRAME assistant executes CRM tools with optional <code>OPENAI_API_KEY</code> NLU fallback.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">RESPONSIVE UI</span>
-                            Desktop admin sidebar; mobile horizontal section pills and bottom tab bar for field crews on site.
+                            <span class="feature-label">DEMO VS PRODUCTION</span>
+                            Static export strips <code>src/app/api</code> and falls back to <code>localStorage</code> (<code>bhc-crm-store-v5</code>); production mode keeps JSON persistence and live API routes on <code>npm run dev</code> / cloud host.
                         </div>
                     </div>
 
-                    <div class="browser-mockup">
-                        <div class="browser-bar">
-                            <div class="browser-dots">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="browser-url">gemsns.github.io/BHC/</div>
-                        </div>
-                        <iframe
-                            src="https://gemsns.github.io/BHC/"
-                            title="BH Contracting CRM — live demo preview"
-                            loading="lazy"
-                            allow="same-origin">
-                        </iframe>
-                        <a class="browser-open-link" href="https://gemsns.github.io/BHC/" target="_blank" rel="noopener noreferrer">
-                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
-                        </a>
-                    </div>
+                    <p style="margin-top: 16px; font-size: 0.9rem; color: #9ca3af;">Try the static demo at <a href="https://gemsns.github.io/BHC/login" style="color: var(--tech-accent);">gemsns.github.io/BHC/login</a> (demo PINs in repo README). Full API backend runs locally on port 3000.</p>
                 </div>
             </section>
 
