@@ -522,7 +522,24 @@
                         </div>
                     </div>
 
-                    <p style="margin-top: 16px; font-size: 0.9rem; color: #9ca3af;">Try the static demo at <a href="https://gemsns.github.io/BHC/login" style="color: var(--tech-accent);">gemsns.github.io/BHC/login</a> (demo PINs in repo README). Full API backend runs locally on port 3000.</p>
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">gemsns.github.io/BHC/login</div>
+                        </div>
+                        <iframe
+                            src="https://gemsns.github.io/BHC/login"
+                            title="BH Contracting — CRM login demo preview"
+                            loading="lazy"
+                            allow="same-origin">
+                        </iframe>
+                        <a class="browser-open-link" href="https://gemsns.github.io/BHC/login" target="_blank" rel="noopener noreferrer">
+                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
+                        </a>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.9rem; color: #9ca3af;">Demo logins in repo README (e.g. <code>cameron</code> / <code>1001</code> admin). Full <code>/api/*</code> backend runs on <code>npm run dev</code>.</p>
                 </div>
             </section>
 
