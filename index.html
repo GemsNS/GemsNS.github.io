@@ -113,14 +113,13 @@
                     <div class="panel-header"><h2>SEC 04 // LOGBOOK</h2></div>
                     <ul class="tech-list">
                         <li>Development Portfolio (Website Development)</li>
-                        <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (Logic &amp; Programming)</li>
+                        <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (v0.6.2)</li>
                         <li><a href="#seaside" style="color: var(--tech-accent); text-decoration: none;">Seaside Contracting</a> — Next.js Marketing Site (Web Development)</li>
                         <li><a href="#booksales" style="color: var(--tech-accent); text-decoration: none;">When Seasons Change</a> — booksales / pinnaclepublishinggroup.net</li>
                         <li><a href="#vandykehomeloans" style="color: var(--tech-accent); text-decoration: none;">VanDyke Home Loans</a> — vandykehomeloans.net (Next.js + Postgres)</li>
                         <li><a href="#ncc" style="color: var(--tech-accent); text-decoration: none;">NCC Family</a> — gemsns.github.io/ncc (Full-Stack Web)</li>
                         <li><a href="#bhc" style="color: var(--tech-accent); text-decoration: none;">BH Contracting CRM</a> — gemsns.github.io/BHC (Next.js Field Ops)</li>
-                        <li><a href="#textflight" style="color: var(--tech-accent); text-decoration: none;">Text Flight</a> — Java Terminal Game (Final Project)</li>
-                        <li><a href="#javablackjack" style="color: var(--tech-accent); text-decoration: none;">Console Blackjack Trainer</a> — Java Console Game (Final Project)</li>
+                        <li><a href="#textflight" style="color: var(--tech-accent); text-decoration: none;">Text Flight</a> — Java Terminal Game (IT Programming Final)</li>
                         <li>Networking Toolkit (Intro to Networking)</li>
                         <li>Virtual Machine Environments (OSYS)</li>
                     </ul>
@@ -138,7 +137,10 @@
             <section id="nottorn" class="tech-panel"  style="margin-top: 20px;">
                 <div class="panel-header">
                     <h2>SEC 06 // PROJECT // NOTTORN</h2>
-                    <a href="https://github.com/GemsNS/NotTorn" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                        <a href="https://github.com/GemsNS/NotTorn" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                        <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">v0.6.2</span>
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -153,12 +155,12 @@
                             </div>
                         </div>
                     </div>
-                    <p>A single-player idle-progression RPG written in Java. Navigate a living city of eight districts, commit crimes, manage a dynamic supply-demand economy, and fight AI-driven enemies in turn-based combat — all rendered inside a retro Swing terminal window. Stats persist offline; every missed tick is applied instantly on next boot.</p>
+                    <p>A single-player idle-progression RPG written in Java. Navigate a living city of eight districts, commit crimes, manage a dynamic supply-demand economy, and fight AI-driven enemies in turn-based combat — all rendered inside a retro Swing terminal window. Stats persist offline; every missed tick is applied instantly on next boot. Latest release hardens rendering (60 fps cap, delta refresh, resize redraw), travel UX, City Center safe zones, and message-log word wrap.</p>
 
                     <div class="nottorn-features">
                         <div class="feature-item">
                             <span class="feature-label">CITY &amp; WORLD</span>
-                            8 connected districts — City Center, Gym, Hospital, Dark Alley, Item Market, Police Station, Bank, Drug Store. Full ASCII city map on demand.
+                            8 connected districts — City Center, Gym, Hospital, Dark Alley, Item Market, Police Station, Bank, Drug Store. Full ASCII city map on demand. City Center is a combat safe zone; NPCs cannot start or finish fights there.
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">CRIME ENGINE</span>
@@ -173,12 +175,12 @@
                             Supply/demand pricing: <code>price = base × (refSupply / supply)^0.5</code>. 5% sales tax, 20 tradeable items, price clamped 20%–500% of base.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">OFFLINE TICKS</span>
-                            60 Hz fixed-timestep loop. Offline catch-up engine calculates every missed regen tick and applies it on load.
+                            <span class="feature-label">RENDER &amp; PLATFORM</span>
+                            Logic/render decoupled at 60 Hz. v0.6.2 removes per-frame <code>screen.clear()</code>, uses <code>RefreshType.DELTA</code>, and calls <code>doResizeIfNecessary()</code> so terminal resize redraws cleanly on Windows and Linux.
                         </div>
                         <div class="feature-item">
-                            <span class="feature-label">CAREERS &amp; TRAVEL</span>
-                            4 career paths with auto-promotion. 11 international destinations with flight-time lockouts, each with exact ticket costs.
+                            <span class="feature-label">CAREERS, TRAVEL &amp; UX</span>
+                            4 career paths with auto-promotion. 11 international destinations with flight-time lockouts. Travel menu shows explicit return-home option; corrupt in-flight saves heal on load; message log word-wraps long lines.
                         </div>
                     </div>
 
@@ -540,7 +542,10 @@
             <section id="textflight" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
                     <h2>SEC 12 // PROJECT // TEXT FLIGHT</h2>
-                    <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">COURSE FINAL PROJECT</span>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                        <a href="https://github.com/GemsNS/JavaBlackjack" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                        <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">IT PROGRAMMING FINAL</span>
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -550,16 +555,16 @@
                             <div class="project-tags">
                                 <span class="project-tag tag-java">Java</span>
                                 <span class="project-tag tag-vanilla">Terminal / Console</span>
-                                <span class="project-tag tag-game">Logic &amp; Programming</span>
+                                <span class="project-tag tag-game">IT Programming</span>
                             </div>
                         </div>
                     </div>
-                    <p>A text-based flight simulator written in Java for a Logic &amp; Programming final project. The player works through a pre-flight checklist, manages fuel, altitude, speed, and distance across multiple flight turns, then attempts a landing with up to two go-arounds. Built to demonstrate core Java language constructs in a cohesive, aviation-themed program.</p>
+                    <p>Submitted IT Programming final on GitHub (<code>GemsNS/JavaBlackjack</code>). Two builds ship in-repo: <code>App.java</code> (compact rubric build) and <code>v2.java</code> (full mission with turbulence, landing, and up to two go-arounds). Includes the <code>W0514987 - FINAL</code> submission package with gameplay footage and project documentation.</p>
 
                     <div class="nottorn-features">
                         <div class="feature-item">
                             <span class="feature-label">PREFLIGHT CHECKLIST</span>
-                            <code>ArrayList&lt;String&gt;</code> holds checklist steps; a <code>for</code> loop walks each item and validates the player's input against <code>"ok"</code>.
+                            <code>ArrayList&lt;String&gt;</code> holds checklist steps; a <code>for-each</code> loop walks each item and validates the player's input against <code>"ok"</code>.
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">FLIGHT LOOP</span>
@@ -567,11 +572,11 @@
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">TURBULENCE ENGINE</span>
-                            <code>Random.nextInt()</code> gives a 30% chance of turbulence per turn, draining 1–4 extra fuel — adding unpredictability to every flight.
+                            <code>Random.nextInt()</code> gives a 30% chance of turbulence per turn in <code>v2.java</code>, draining 1–4 extra fuel. <code>App.java</code> uses a 1-in-10 random crash roll for a shorter rubric path.
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">LANDING &amp; GO-AROUND</span>
-                            Up to 2 go-arounds tracked with a counter. Landing outcome branches on speed, altitude, and fuel via <code>&amp;&amp;</code> / <code>||</code> compound conditions.
+                            Full build (<code>v2.java</code>): up to 2 go-arounds tracked with a counter. Landing outcome branches on speed, altitude, and fuel via <code>&amp;&amp;</code> / <code>||</code> compound conditions.
                         </div>
                         <div class="feature-item">
                             <span class="feature-label">MAIN MENU LOOP</span>
@@ -600,57 +605,6 @@
                         <div>turn 2 | fuel ~92 | alt 500 | speed 415 | dist 125 km</div>
                         <div style="color: #6b7280;">...</div>
                         <div style="color: var(--tech-accent);">smooth landing</div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="javablackjack" class="tech-panel" style="margin-top: 20px;">
-                <div class="panel-header">
-                    <h2>SEC 13 // PROJECT // CONSOLE BLACKJACK TRAINER</h2>
-                    <div style="display:flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-                        <a href="https://github.com/GemsNS/JavaBlackjack" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
-                        <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">COURSE FINAL PROJECT</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-card-header">
-                        <div>
-                            <span class="highlight">Console Blackjack Trainer</span> &mdash; Java Terminal Card Game
-                            <div class="project-tags">
-                                <span class="project-tag tag-java">Java</span>
-                                <span class="project-tag tag-vanilla">Terminal / Console</span>
-                                <span class="project-tag tag-game">IT Programming</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p>A one-file Java console game built for an IT Programming final project. The player faces a computer dealer using text commands &mdash; hit, stand, and round resolution &mdash; with clean logic that demonstrates variables, control structures, methods, and collections in a complete, gradable program.</p>
-
-                    <div class="nottorn-features">
-                        <div class="feature-item">
-                            <span class="feature-label">GAME LOOP</span>
-                            Deal a new round, accept player actions, then run the dealer turn against fixed blackjack rules until a winner is shown.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">COLLECTIONS</span>
-                            <code>ArrayList</code> stores the deck, player hand, and dealer hand; cards are dealt and scored from shared list state.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">METHOD DESIGN</span>
-                            Custom helpers for dealing cards, calculating hand value, running the dealer turn, and printing round results.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">CONTROL FLOW</span>
-                            Multiple <code>if-else</code> branches plus <code>while</code> and <code>for</code> loops drive rounds, input prompts, and hand iteration.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">INPUT / OUTPUT</span>
-                            <code>Scanner</code> reads keyboard commands; formatted console output walks the player through each decision point.
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-label">ERROR HANDLING</span>
-                            <code>try-catch</code> guards against bad or unexpected user input so invalid commands do not crash the session.
-                        </div>
                     </div>
                 </div>
             </section>
