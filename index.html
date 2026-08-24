@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Aviation enthusiast building Java and web projects including NotTorn, NCC Family platform work, and static book/presale landings.">
+    <meta name="description" content="Joel Al Gohri Sayed — IT student at NSCC. Portfolio includes pinnaclepublishinggroup.net (booksales), vandykehomeloans.net, NCC Family, BH Contracting CRM, Seaside Contracting, and NotTorn.">
     <meta name="theme-color" content="#000000">
     <title>Joel Al Gohri Sayed | IT Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,9 +115,12 @@
                         <li>Development Portfolio (Website Development)</li>
                         <li><a href="#nottorn" style="color: var(--tech-accent); text-decoration: none;">NotTorn</a> — Java RPG Simulation (Logic &amp; Programming)</li>
                         <li><a href="#seaside" style="color: var(--tech-accent); text-decoration: none;">Seaside Contracting</a> — Next.js Marketing Site (Web Development)</li>
-                        <li><a href="#booksales" style="color: var(--tech-accent); text-decoration: none;">When Seasons Change</a> — pinnaclepublishinggroup.net (Static Web)</li>
-                        <li><a href="#ncc" style="color: var(--tech-accent); text-decoration: none;">NCC Family</a> — Church Platform Rebrand (Full-Stack Web)</li>
+                        <li><a href="#booksales" style="color: var(--tech-accent); text-decoration: none;">When Seasons Change</a> — booksales / pinnaclepublishinggroup.net</li>
+                        <li><a href="#vandykehomeloans" style="color: var(--tech-accent); text-decoration: none;">VanDyke Home Loans</a> — vandykehomeloans.net (Next.js + Postgres)</li>
+                        <li><a href="#ncc" style="color: var(--tech-accent); text-decoration: none;">NCC Family</a> — gemsns.github.io/ncc (Full-Stack Web)</li>
+                        <li><a href="#bhc" style="color: var(--tech-accent); text-decoration: none;">BH Contracting CRM</a> — gemsns.github.io/BHC (Next.js Field Ops)</li>
                         <li><a href="#textflight" style="color: var(--tech-accent); text-decoration: none;">Text Flight</a> — Java Terminal Game (Final Project)</li>
+                        <li><a href="#javablackjack" style="color: var(--tech-accent); text-decoration: none;">Console Blackjack Trainer</a> — Java Console Game (Final Project)</li>
                         <li>Networking Toolkit (Intro to Networking)</li>
                         <li>Virtual Machine Environments (OSYS)</li>
                     </ul>
@@ -128,6 +131,7 @@
                     <p><span class="highlight">EMAIL:</span> w0514987@campus.nscc.ca</p>
                     <p><span class="highlight">LOC:</span> Halifax, Nova Scotia</p>
                     <a href="https://www.linkedin.com/in/joel-a-785a273a3" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 15px;">LINKEDIN_CONNECT &rarr;</a>
+                    <a href="https://github.com/GemsNS" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 10px;">GITHUB_PROFILE &rarr;</a>
                 </section>
             </div>
 
@@ -323,9 +327,79 @@
                 </div>
             </section>
 
+            <section id="vandykehomeloans" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 09 // PROJECT // VANDYKE HOME LOANS</h2>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://vandykehomeloans.net/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
+                        <a href="https://github.com/GemsNS/vandykehomeloans" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">VanDyke Home Loans</span> &mdash; Mortgage Broker Web Platform
+                            <div class="project-tags">
+                                <span class="project-tag tag-next">Next.js 15</span>
+                                <span class="project-tag tag-ts">TypeScript</span>
+                                <span class="project-tag tag-web">Tailwind CSS v3</span>
+                                <span class="project-tag tag-node">Postgres + Drizzle</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Production web application at <a href="https://vandykehomeloans.net/" target="_blank" rel="noopener noreferrer" style="color: var(--tech-accent);">vandykehomeloans.net</a> &mdash; live published rates, mortgage calculators (P&amp;I, amortization, APR, DTI, affordability, refinance break-even), lead capture, and a protected broker admin CMS for rates, pipeline, and broker directory management.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">PUBLIC TOOLS</span>
+                            <code>/lib/mortgage-math/</code> powers interactive calculators; public site serves demo rates and broker profiles when no database is configured.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">DATA LAYER</span>
+                            Drizzle ORM models for <code>rates</code>, <code>brokers</code>, and <code>leads</code>; Server Actions for mutations; Postgres via <code>DATABASE_URL</code>.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ADMIN CMS</span>
+                            Protected <code>/admin</code> routes for rate publishing, lead pipeline, and broker directory &mdash; password auth via <code>ADMIN_PASSWORD</code>.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">UI SYSTEM</span>
+                            Radix UI / shadcn patterns, Recharts visualizations, Zod validation, and react-hook-form across lead and admin flows.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">HOSTING PROFILE</span>
+                            Tuned for Ubuntu 18.04 + GLIBC 2.28: no Prisma, no Tailwind v4, no Sharp; builds run through a GLIBC-prep script for Linux deploy targets.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">LEAD CAPTURE</span>
+                            Server-side lead intake with schema validation, ready for broker follow-up from the admin pipeline view.
+                        </div>
+                    </div>
+
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">vandykehomeloans.net</div>
+                        </div>
+                        <iframe
+                            src="https://vandykehomeloans.net/"
+                            title="VanDyke Home Loans — live site preview"
+                            loading="lazy"
+                            allow="same-origin">
+                        </iframe>
+                        <a class="browser-open-link" href="https://vandykehomeloans.net/" target="_blank" rel="noopener noreferrer">
+                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section id="ncc" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
-                    <h2>SEC 09 // PROJECT // NCC FAMILY</h2>
+                    <h2>SEC 10 // PROJECT // NCC FAMILY</h2>
                     <div style="display:flex; gap: 10px; flex-wrap: wrap;">
                         <a href="https://gemsns.github.io/ncc/" target="_blank" rel="noopener noreferrer" class="btn">LIVE SITE &rarr;</a>
                         <a href="https://github.com/GemsNS/ncc" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
@@ -393,9 +467,79 @@
                 </div>
             </section>
 
+            <section id="bhc" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 11 // PROJECT // BH CONTRACTING CRM</h2>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://gemsns.github.io/BHC/" target="_blank" rel="noopener noreferrer" class="btn">LIVE DEMO &rarr;</a>
+                        <a href="https://github.com/GemsNS/BHC" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">BH Contracting Co.</span> &mdash; All-in-One Operations CRM
+                            <div class="project-tags">
+                                <span class="project-tag tag-next">Next.js 15</span>
+                                <span class="project-tag tag-ts">TypeScript</span>
+                                <span class="project-tag tag-motion">Framer Motion</span>
+                                <span class="project-tag tag-web">Tailwind CSS v4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Operations CRM and web-hosted field apps for a subcontracting company &mdash; role-based login, announcements, knocker zones, jobs, materials, fuel, fleet, hours, and stats. Demo deployed to GitHub Pages with localStorage-backed data; full mode uses JSON storage plus <code>/api/*</code> routes for local or cloud hosting.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">ROLE-GATED ACCESS</span>
+                            Employee login/PIN unlocks permission-scoped nav: Admin dashboard, Knocker app, Field apps hub, and time clock surfaces.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">FIELD OPERATIONS</span>
+                            Tools in/out checkout, inventory levels, damage reports with photos, job progress notes, and invoice vs full-report workflows.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">SCHEDULING &amp; SALES</span>
+                            Team calendar, open shift pool, overtime tracking, and a unified sales hub (Pipeline, Client 360&deg;, Automation, Support, Outreach).
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">JARVIS LAYER</span>
+                            Contextual briefing bar and command palette on every screen for quick ops navigation and summaries.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">QUALITY &amp; DEPLOY</span>
+                            Vitest test suite, ESLint, static export via <code>npm run build:gh-pages</code>, and one-command <code>deploy:gh-pages</code> publish.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">RESPONSIVE UI</span>
+                            Desktop admin sidebar; mobile horizontal section pills and bottom tab bar for field crews on site.
+                        </div>
+                    </div>
+
+                    <div class="browser-mockup">
+                        <div class="browser-bar">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-url">gemsns.github.io/BHC/</div>
+                        </div>
+                        <iframe
+                            src="https://gemsns.github.io/BHC/"
+                            title="BH Contracting CRM — live demo preview"
+                            loading="lazy"
+                            allow="same-origin">
+                        </iframe>
+                        <a class="browser-open-link" href="https://gemsns.github.io/BHC/" target="_blank" rel="noopener noreferrer">
+                            &uarr; LIVE PREVIEW &nbsp;|&nbsp; OPEN IN NEW TAB &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section id="textflight" class="tech-panel" style="margin-top: 20px;">
                 <div class="panel-header">
-                    <h2>SEC 10 // PROJECT // TEXT FLIGHT</h2>
+                    <h2>SEC 12 // PROJECT // TEXT FLIGHT</h2>
                     <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">COURSE FINAL PROJECT</span>
                 </div>
 
@@ -456,6 +600,57 @@
                         <div>turn 2 | fuel ~92 | alt 500 | speed 415 | dist 125 km</div>
                         <div style="color: #6b7280;">...</div>
                         <div style="color: var(--tech-accent);">smooth landing</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="javablackjack" class="tech-panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>SEC 13 // PROJECT // CONSOLE BLACKJACK TRAINER</h2>
+                    <div style="display:flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                        <a href="https://github.com/GemsNS/JavaBlackjack" target="_blank" rel="noopener noreferrer" class="btn">GITHUB_REPO &rarr;</a>
+                        <span class="project-tag tag-java" style="padding: 6px 12px; font-size: 0.8rem;">COURSE FINAL PROJECT</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div>
+                            <span class="highlight">Console Blackjack Trainer</span> &mdash; Java Terminal Card Game
+                            <div class="project-tags">
+                                <span class="project-tag tag-java">Java</span>
+                                <span class="project-tag tag-vanilla">Terminal / Console</span>
+                                <span class="project-tag tag-game">IT Programming</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>A one-file Java console game built for an IT Programming final project. The player faces a computer dealer using text commands &mdash; hit, stand, and round resolution &mdash; with clean logic that demonstrates variables, control structures, methods, and collections in a complete, gradable program.</p>
+
+                    <div class="nottorn-features">
+                        <div class="feature-item">
+                            <span class="feature-label">GAME LOOP</span>
+                            Deal a new round, accept player actions, then run the dealer turn against fixed blackjack rules until a winner is shown.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">COLLECTIONS</span>
+                            <code>ArrayList</code> stores the deck, player hand, and dealer hand; cards are dealt and scored from shared list state.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">METHOD DESIGN</span>
+                            Custom helpers for dealing cards, calculating hand value, running the dealer turn, and printing round results.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">CONTROL FLOW</span>
+                            Multiple <code>if-else</code> branches plus <code>while</code> and <code>for</code> loops drive rounds, input prompts, and hand iteration.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">INPUT / OUTPUT</span>
+                            <code>Scanner</code> reads keyboard commands; formatted console output walks the player through each decision point.
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">ERROR HANDLING</span>
+                            <code>try-catch</code> guards against bad or unexpected user input so invalid commands do not crash the session.
+                        </div>
                     </div>
                 </div>
             </section>
