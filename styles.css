@@ -323,6 +323,34 @@ footer { background-color: #000; font-family: var(--hud-font); border-top: 1px s
     transition: color 0.2s;
 }
 .browser-open-link:hover { color: var(--tech-accent); }
+.browser-hotlink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 140px;
+    padding: 28px 20px;
+    background: #0c0e10;
+    text-decoration: none;
+    text-align: center;
+    border-top: none;
+    transition: background 0.2s;
+}
+.browser-hotlink:hover { background: #14171a; }
+.browser-hotlink-url {
+    font-family: var(--hud-font);
+    font-size: 1rem;
+    color: var(--tech-accent);
+    word-break: break-all;
+}
+.browser-hotlink-cta {
+    font-family: var(--hud-font);
+    font-size: 0.8rem;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+}
+.browser-hotlink:hover .browser-hotlink-cta { color: #fff; }
 @media (max-width: 800px) {
     .browser-mockup iframe { height: 380px; }
 }
